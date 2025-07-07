@@ -1,8 +1,7 @@
-name: Fetch TLDs and Generate Source File (Weekly)
+name: Fetch TLDs and Generate Source File (Monthly)
 
 permissions:
   contents: write
-
 
 on:
   schedule:
