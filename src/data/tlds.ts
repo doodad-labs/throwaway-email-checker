@@ -1,6 +1,6 @@
 // AUTO-GENERATED FILE - DO NOT EDIT DIRECTLY
 // This file is regenerated whenever the TLD list is updated
-// Last updated: 2025-07-07T21:16:08.789Z
+// Last updated: 2025-07-07T21:26:11.609Z
 
 /**
  * Array of all valid top-level domains (TLDs).
@@ -12,7 +12,7 @@ export const tldArray: string[] = [
 
 /** 
  * Set of all valid top-level domains (TLDs).
- * This is used for quick lookups in the isTldValid function.
+ * This is used for quick O(1) lookups.
  * @type {Set<string>}
  * @constant
  */

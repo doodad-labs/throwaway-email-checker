@@ -31,7 +31,7 @@ async function parseAndGenerateTldFile(tlds: string[]): Promise<void> {
  * Sourced from IANA's official list.
  */
 export const tldArray: string[] = [
-    ${tlds.map(tld => `"${tld}"`).join(',')}
+    ${tlds.map(tld => `"${tld}"`).join(',\n')}
 ];
 
 /** 

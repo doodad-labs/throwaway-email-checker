@@ -1,5 +1,5 @@
-import { tldArray, isTldValid } from '../src/data/tlds';
+import { tldArray, tldSet } from '../src/data/tlds';
 
 for (const tld of tldArray) {
-    console.log(tld, isTldValid(tld) ? 'is valid' : 'is invalid');
+    console.log(tld, tldSet.has(tld.toLowerCase()) ? 'is valid' : 'is invalid');
 }
