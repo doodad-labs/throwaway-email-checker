@@ -1,24 +1,5 @@
-//import { run, bench, summary } from 'mitata';
 import { performance } from 'perf_hooks';
 import validation from '../src/validation';
-
-function generateRandomString() {
-    // Determine length (32 or 64)
-    const length = Math.random() < 0.5 ? 32 : 64;
-
-    // Define character set
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!#$%&\'*+-/=?^_`{|}~';
-
-    let result = '';
-
-    // Generate random string
-    for (let i = 0; i < length; i++) {
-        const randomIndex = Math.floor(Math.random() * chars.length);
-        result += chars[randomIndex];
-    }
-
-    return result;
-}
 
 function convertMs(ms: number): string {
     // Ensure input is a number and non-negative
@@ -163,65 +144,35 @@ function npmjs_com_shelf_is_valid_email_address(email: string): boolean {
     return true;
 }
 
-/* summary(() => {
-
-    const testEmails = Array.from({ length: 100 }, () =>
-        `${generateRandomString()}@${generateRandomString()}.${generateRandomString()}`
-    );
-
-    bench('Our Email Validator', function* () {
-
-        let i = 0;
-
-        yield {
-            [0]() {
-                return testEmails[i++ % testEmails.length];
-            },
-
-            bench(email: string) {
-                validation(email);
-            },
-        };
-    });
-
-    bench('npmjs.com/email-validator', function* () {
-
-        let i = 0;
-
-        yield {
-            [0]() {
-                return testEmails[i++ % testEmails.length];
-            },
-
-            bench(email: string) {
-                npmjs_com_email_validator(email);
-            },
-        };
-    });
-
-    bench('npmjs.com/@shelf/is-valid-email-address', function* () {
-
-        let i = 0;
-
-        yield {
-            [0]() {
-                return testEmails[i++ % testEmails.length];
-            },
-
-            bench(email: string) {
-                npmjs_com_shelf_is_valid_email_address(email);
-            },
-        };
-    });
-
-}) */
-
-//run()
-
-const testEmails = Array.from({ length: 100 }, () =>
-    //`${generateRandomString()}@${generateRandomString()}.${generateRandomString()}`
-    `t.est@test.com`
-);
+const testEmails = [
+    "local@domain.com",
+    "local@domain.co.uk",
+    "local@subdomain.domain.co.uk",
+    `${"a".repeat(64)}@domain.com`,
+    `a@${"b".repeat(253-5)}.com`,
+    ".local@domain.com",
+    "local.@domain.com",
+    "$local@domain.com",
+    "lo..cal@domain.com",
+    "lo.cal@domain.com",
+    "local@domain..com",
+    "local@domain.c",
+    "email@example.com",
+    "firstname.lastname@example.com",
+    "email@subdomain.example.com",
+    "firstname+lastname@example.com",
+    "email@123.123.123.123",
+    "\"email\"@example.com",
+    "1234567890@example.com",
+    "email@example-one.com",
+    "_______@example.com",
+    "email@example.name",
+    "email@example.museum",
+    "email@example.co.jp",
+    "firstname-lastname@example.com",
+    "much.”more\\ unusual”@example.com",
+    "very.unusual.”@”.unusual.com@example.com",
+];
 
 const runs = 1_000_000
 let ourValidation = 0

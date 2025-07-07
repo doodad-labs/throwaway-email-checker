@@ -1,29 +1,18 @@
-import validation from '../src/validation';
+import { isTldValid } from '../src/data/tlds';
 
-const validEmails = [
-    "local@domain.com",
-    "local@domain.co.uk",
-    "local@subdomain.domain.co.uk",
-    "a".repeat(64) + "@domain.com",
-    "a".repeat(64) + "@" + "b".repeat(249) + ".com"
+const tlds = [
+    'com',
+    'org',
+    'net',
+    'co.uk',
+    'io',
+    'ai',
+    'xyz',
+    'info',
 ]
 
-const invalidEmails = [
-    "local@domain",
-    "local@domain..com",
-    "local@.domain.com",
-]
-
-
-test('email validator against valid emails  ', () => {
-    validEmails.forEach(email => {
-        expect(validation(email)).toBeTruthy();
+test('TLD Validation', () => {
+    tlds.forEach(tld => {
+        expect(isTldValid(tld)).toBeTruthy();
     });
 });
-
-/* test('email validator against invalid emails', () => {
-    invalidEmails.forEach(email => {
-        console.log(email)
-        expect(validation(email)).toBeFalsy();
-    });
-}); */

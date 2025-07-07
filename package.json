@@ -27,9 +27,11 @@
     "@types/jest": "^30.0.0",
     "@types/node": "^24.0.10",
     "jest": "^30.0.4",
-    "mitata": "^1.0.34",
     "nanotime": "^1.0.2",
     "ts-jest": "^29.4.0",
     "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "playwright": "^1.53.2"
   }
 }

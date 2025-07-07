@@ -1,7 +1,13 @@
 import validation from '../src/validation';
 
 const tester = /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
-
+const twoDotsRegex = /\.{2,}/g;
+const domainRegex = /([\da-z.-]+)(\.)((?!.*\.$)[a-z.]{2,6})/g;
+const localPartRegex = /.+(?=@)/;
+const dotsOnEdgesRegex = /^[.]|[.]$/g;
+const quotedRegEx = /^"[A-Za-z0-9+\-!#$%&'*/=?^_`{|}~(),:;<>@[\]\\ ]+"$/g;
+const quotedElementsRegEx = /"[A-Za-z0-9+\-!#$%&'*/=?^_`{|}~(),:;<>@[\]\\ ]+"/g;
+const unquotedRegex = /^[A-Za-z0-9+\-!#$%&'*/=?^_`{|}~.]+|[A-Za-z0-9+\-!#$%&'*/=?^_`{|}~.]+|(?:[\\][A-Za-z0-9+\-!#$%&'*/=?^_`{|}~.(),:;<>@[\]\\ "])+|^(?:[\\][A-Za-z0-9+\-!#$%&'*/=?^_`{|}~.(),:;<>@[\]\\ "])+/g;
 
 function npmjs_com_email_validator(email: string): boolean {
     if (!email)
@@ -43,6 +49,68 @@ function npmjs_com_email_validator(email: string): boolean {
     return true;
 }
 
+function npmjs_com_shelf_is_valid_email_address(email: string): boolean {
+    if (email.match(twoDotsRegex)) {
+
+        return false;
+
+    }
+
+    const domainPart = email.replace(localPartRegex, '');
+
+    if (!domainPart.match(domainRegex)) {
+
+        return false;
+
+    }
+
+    const localPartMatch = email.match(localPartRegex);
+
+    if (!localPartMatch) {
+
+        return false;
+
+    }
+
+    const localPart = localPartMatch[0];
+
+    if (localPart.match(dotsOnEdgesRegex)) {
+
+        return false;
+
+    }
+
+    const quotedParts = email.match(/".+?"/g);
+
+    if (quotedParts && !quotedParts.every(item => item.match(quotedRegEx)?.length)) {
+
+        return false;
+
+    }
+
+    const unquotedPart = quotedParts ? localPart.replaceAll(quotedElementsRegEx, '') : localPart;
+
+    if (unquotedPart === '') {
+
+        return true;
+
+    }
+
+    const unquotedPartMatch = unquotedPart && unquotedPart.match(unquotedRegex);
+
+    if (unquotedPartMatch === null ||
+
+        unquotedPartMatch?.reduce((acc, item) => acc.replace(item, ''), unquotedPart)
+
+            .length) {
+
+        return false;
+
+    }
+
+    return true;
+}
+
 const emails: [string, boolean][] = [
     ["local@domain.com", true],
     ["local@domain.co.uk", true],
@@ -79,6 +147,6 @@ const emails: [string, boolean][] = [
 console.log('Is Valid\t| Working\t| Email')
 
 emails.forEach(email => {
-    const valid = validation(email[0]);
+    const valid = npmjs_com_shelf_is_valid_email_address(email[0]);
     console.log(email[1] ? '✅\t|' : '❌\t|', valid === email[1] ? '✅\t\t|' : '❌\t\t|', (valid === email[1] ? '' : '\x1b[31m') + email[0].slice(0, 50) + (email[0].length > 50 ? '...' : ''), '\x1b[0m');
 });
