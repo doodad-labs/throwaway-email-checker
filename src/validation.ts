@@ -2,13 +2,14 @@
 Drawbacks to not using regex: the longer the email, the more complex the validation logic becomes resulting in a performance hit.
 */
 
+import { isTldValid, tldSet } from './data/tlds';
 
-export default function (email: string): boolean {
+export default function (email: string, validateTld: boolean = true): boolean {
     const len = email.length;
 
     // RFC 5321 (Section 4.5.3.1.3) Maximum length of an email address is 254 characters
     // The minimum correct length is 6 characters (e.g., "a@b.cd")
-    
+
     if (!email || len > 254 || len < 6) return false;
 
     // RFC 5322 (Section 3.4.1) Only 1 '@' character is allowed
@@ -87,5 +88,10 @@ export default function (email: string): boolean {
         return false;
     }
 
-    return true;
+    if (validateTld === false) {
+        return true; // Skip TLD validation if not required
+    }
+
+    const tld = email.substring(lastDotIndex + 1);
+    return tldSet.has(tld.toLowerCase()); // Use Set for O(1) lookup
 }

@@ -2,7 +2,6 @@ import fs from 'fs';
 
 const ICAAN_TLDS_URL = 'https://data.iana.org/TLD/tlds-alpha-by-domain.txt'; // IANA's official TLD list URL
 const OUTPUT_FILE_PATH = './src/data/tlds.ts'; // Output path for the generated TypeScript file
-const CONDITIONS_PER_STATEMENT = 20; // Number of conditions per if statement in the generated validation function
 const TLD_VALIDATION_REGEX = /^[a-zA-Z0-9-]+$/; // Regular expression to validate TLD patterns (letters, numbers, and hyphens)
 
 /**
@@ -19,15 +18,6 @@ async function parseAndGenerateTldFile(tlds: string[]): Promise<void> {
         throw new Error(
         'Potential supply chain attack detected: Some TLDs contain invalid characters'
         );
-    }
-
-    // Generate if conditions in chunks to avoid overly long statements
-    const tldIfConditions = tlds.map(tld => `"${tld.toLowerCase()}" === normalizedTld`);
-    let ifConditions = '';
-
-    for (let i = 0; i < tldIfConditions.length; i += CONDITIONS_PER_STATEMENT) {
-        const conditionsSlice = tldIfConditions.slice(i, i + CONDITIONS_PER_STATEMENT);
-        ifConditions += `\tif (${conditionsSlice.join(' || ')}) return true;\n`;
     }
 
     // Generate the TypeScript file content
@@ -51,17 +41,6 @@ export const tldArray: string[] = [
  * @constant
  */
 export const tldSet: Set<string> = new Set(tldArray);
-
-/**
- * Checks if a given string is a valid top-level domain (TLD).
- * @param tld - The domain extension to check (e.g., 'com', 'org')
- * @returns true if the TLD is valid, false otherwise
- */
-export function isTldValid(tld: string): boolean {
-    const normalizedTld = tld.toLowerCase();
-${ifConditions}
-    return false;
-}
     `.trim();
 
     try {

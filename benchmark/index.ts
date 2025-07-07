@@ -1,6 +1,16 @@
 import { performance } from 'perf_hooks';
 import validation from '../src/validation';
 
+const tester = /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
+const twoDotsRegex = /\.{2,}/g;
+const domainRegex = /([\da-z.-]+)(\.)((?!.*\.$)[a-z.]{2,6})/g;
+const localPartRegex = /.+(?=@)/;
+const dotsOnEdgesRegex = /^[.]|[.]$/g;
+const quotedRegEx = /^"[A-Za-z0-9+\-!#$%&'*/=?^_`{|}~(),:;<>@[\]\\ ]+"$/g;
+const quotedElementsRegEx = /"[A-Za-z0-9+\-!#$%&'*/=?^_`{|}~(),:;<>@[\]\\ ]+"/g;
+const unquotedRegex = /^[A-Za-z0-9+\-!#$%&'*/=?^_`{|}~.]+|[A-Za-z0-9+\-!#$%&'*/=?^_`{|}~.]+|(?:[\\][A-Za-z0-9+\-!#$%&'*/=?^_`{|}~.(),:;<>@[\]\\ "])+|^(?:[\\][A-Za-z0-9+\-!#$%&'*/=?^_`{|}~.(),:;<>@[\]\\ "])+/g;
+
+
 function convertMs(ms: number): string {
     // Ensure input is a number and non-negative
     if (typeof ms !== 'number' || ms < 0) {
@@ -32,15 +42,6 @@ function convertMs(ms: number): string {
         return `${nanoseconds}ns`;
     }
 }
-
-const tester = /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
-const twoDotsRegex = /\.{2,}/g;
-const domainRegex = /([\da-z.-]+)(\.)((?!.*\.$)[a-z.]{2,6})/g;
-const localPartRegex = /.+(?=@)/;
-const dotsOnEdgesRegex = /^[.]|[.]$/g;
-const quotedRegEx = /^"[A-Za-z0-9+\-!#$%&'*/=?^_`{|}~(),:;<>@[\]\\ ]+"$/g;
-const quotedElementsRegEx = /"[A-Za-z0-9+\-!#$%&'*/=?^_`{|}~(),:;<>@[\]\\ ]+"/g;
-const unquotedRegex = /^[A-Za-z0-9+\-!#$%&'*/=?^_`{|}~.]+|[A-Za-z0-9+\-!#$%&'*/=?^_`{|}~.]+|(?:[\\][A-Za-z0-9+\-!#$%&'*/=?^_`{|}~.(),:;<>@[\]\\ "])+|^(?:[\\][A-Za-z0-9+\-!#$%&'*/=?^_`{|}~.(),:;<>@[\]\\ "])+/g;
 
 function npmjs_com_email_validator(email: string): boolean {
     if (!email)
@@ -196,6 +197,6 @@ for (let i = 0; i < runs; i++) {
 }
 
 console.log(`\nBenchmarking ${runs.toLocaleString()} runs...`);
-console.log(`Our Email Validator: \t\t\t\ttotal: ${convertMs(ourValidation)}, avg: ${convertMs(ourValidation / runs)}`);
-console.log(`npmjs.com/email-validator: \t\t\ttotal: ${convertMs(emailValidator)}, avg: ${convertMs(emailValidator / runs)}`);
-console.log(`npmjs.com/@shelf/is-valid-email-address: \ttotal: ${convertMs(shelfValidator)}, avg: ${convertMs(shelfValidator / runs)}`);
+console.log(`Our Email Validator: \t\t\t\tavg: ${convertMs(ourValidation / runs)}`);
+console.log(`npmjs.com/email-validator: \t\t\tavg: ${convertMs(emailValidator / runs)}`);
+console.log(`npmjs.com/@shelf/is-valid-email-address: \tavg: ${convertMs(shelfValidator / runs)}`);
