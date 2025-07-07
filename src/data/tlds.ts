@@ -1,6 +1,6 @@
 // AUTO-GENERATED FILE - DO NOT EDIT DIRECTLY
 // This file is regenerated whenever the TLD list is updated
-// Last updated: 2025-07-07T20:48:19.318Z
+// Last updated: 2025-07-07T21:01:30.452Z
 
 /**
  * Array of all valid top-level domains (TLDs).
