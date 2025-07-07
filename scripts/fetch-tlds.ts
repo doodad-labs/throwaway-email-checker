@@ -36,7 +36,7 @@ export const tldArray: string[] = [
 
 /** 
  * Set of all valid top-level domains (TLDs).
- * This is used for quick lookups in the isTldValid function.
+ * This is used for quick O(1) lookups.
  * @type {Set<string>}
  * @constant
  */
