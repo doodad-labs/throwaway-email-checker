@@ -1,26 +1,91 @@
-/**
- * Validates an email address according to RFC standards with additional checks
- * @param email - The email address to validate
- * @returns boolean - true if email is valid, false otherwise
- */
+/* 
+Drawbacks to not using regex: the longer the email, the more complex the validation logic becomes resulting in a performance hit.
+*/
+
+
 export default function (email: string): boolean {
     const len = email.length;
 
     // RFC 5321 (Section 4.5.3.1.3) Maximum length of an email address is 254 characters
-    if (!email || len > 254 || len < 3) {
+    // The minimum correct length is 6 characters (e.g., "a@b.cd")
+    
+    if (!email || len > 254 || len < 6) return false;
+
+    // RFC 5322 (Section 3.4.1) Only 1 '@' character is allowed
+    // RFC 5321 (Section 4.5.3.1.2) Maximum length of local part is 64 octets (characters)
+    // RFC 5321 (Section 4.5.3.1.2) Maximum length of domain part is 253 octets (characters)
+
+    const atIndex = email.indexOf('@');
+    if (atIndex === -1 || 
+        email.indexOf('@', atIndex + 1) !== -1 || 
+        atIndex === 0 || 
+        atIndex > 64 || 
+        atIndex === len - 1 || 
+        len - atIndex - 1 > 253) {
         return false;
     }
 
-    // RFC 5322 (Section 3.4.1) Only 1 '@' character is allowed
-    const atIndex  = email.indexOf('@');
-    if (atIndex === -1) return false;
-    if (email.indexOf('@', atIndex  + 1) !== -1) return false;
+    // RFC 5322 (Section 3.4.1) Local part can contain:
+    //   - Alphanumeric characters: a-z, A-Z, 0-9
+    //   - Special characters: ! # $ % & ' * + - / = ? ^ _ ` { | } ~
+    //   - Dot (.) if:
+    //     - Not at start or end
+    //     - Not consecutive
 
-    console.log(len - atIndex - 1)
+    let prevWasDot = false;
+    for (let i = 0; i < atIndex; i++) {
+        const charCode = email.charCodeAt(i);
+        
+        // Optimized character check using bitmask ranges
+        const isValidChar = 
+            (charCode >= 48 && charCode <= 57) ||   // 0-9
+            (charCode >= 65 && charCode <= 90) ||   // A-Z
+            (charCode >= 97 && charCode <= 122) ||  // a-z
+            (charCode === 33 || 35 || 36 || 37 || 38 || 39 || 42 || 43 || 
+            45 || 47 || 61 || 63 || 94 || 95 || 96 || 123 || 124 || 125 || 126);
+        
+        if (!isValidChar) return false;
+        
+        // Dot position validation
+        if (charCode === 46) {
+            if (i === 0 || i === atIndex - 1 || prevWasDot) return false;
+            prevWasDot = true;
+        } else {
+            prevWasDot = false;
+        }
+    }
 
-    // RFC 5322 (Section 3.4.1)
-    if (atIndex === 0 || atIndex > 64) return false; // Local part (before '@') must not be empty and must not exceed 64 characters
-    if (atIndex === len - 1 || len - atIndex - 1 > 253) return false; // Domain part (after '@') must not be empty and must not exceed 253 characters
+    // RFC 5322 (Section 3.4.1) + RFC 1035 (DNS standards)
+    // - Alphanumerics and hyphen (-)
+    // - Dot (.) only as separator
+    // - Labels: 1-63 chars, no leading/trailing hyphen
+    // ICANN requirements:
+    // - TLD ≥2 characters
 
-    return true
+    for (let i = atIndex + 1; i < len; i++) {
+        const charCode = email.charCodeAt(i);
+        // Optimized character check using bitmask ranges
+        const isValidChar = 
+            (charCode >= 48 && charCode <= 57) ||   // 0-9
+            (charCode >= 65 && charCode <= 90) ||   // A-Z
+            (charCode >= 97 && charCode <= 122) ||  // a-z
+            (charCode === 45 || charCode === 46);   // - or .
+
+        if (!isValidChar) return false;
+        
+        // Dot position validation
+        if (charCode === 46) {
+            if (i === atIndex + 1 || i === len - 1 || email.charCodeAt(i - 1) === 46) {
+                return false;
+            }
+        }
+    }
+
+    // Check TLD length (ICANN requirement)
+    const lastDotIndex = email.lastIndexOf('.');
+    if (lastDotIndex === -1 || lastDotIndex < atIndex + 2 || len - lastDotIndex < 3) {
+        return false;
+    }
+
+    return true;
 }
