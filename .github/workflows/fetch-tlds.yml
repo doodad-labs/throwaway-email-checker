@@ -27,7 +27,7 @@ jobs:
       - name: Fetch TLDs and generate source file
         env:
           GITHUB_USERNAME: ${{ github.repository_owner }}
-        run: tsx scripts/fetch-tlds.ts
+        run: npm run fetch-tlds
 
       - name: Commit generated source
         run: |

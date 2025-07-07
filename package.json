@@ -4,7 +4,8 @@
   "description": "Reserved namespace",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "fetch-tlds": "tsx scripts/fetch-tlds.ts"
   },
   "repository": {
     "type": "git",
