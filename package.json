@@ -1,0 +1,34 @@
+{
+  "name": "throwaway",
+  "version": "0.0.1",
+  "description": "Reserved namespace",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/doodad-labs/throwaway-email-checker.git"
+  },
+  "keywords": [
+    "throwaway email",
+    "disposable email",
+    "email checker",
+    "spam checker",
+    "spam filter"
+  ],
+  "author": "DoodadLabs",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/doodad-labs/throwaway-email-checker/issues"
+  },
+  "homepage": "https://github.com/doodad-labs/throwaway-email-checker#readme",
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.0.10",
+    "jest": "^30.0.4",
+    "mitata": "^1.0.34",
+    "ts-jest": "^29.4.0",
+    "typescript": "^5.8.3"
+  }
+}
