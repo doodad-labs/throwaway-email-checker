@@ -9,9 +9,6 @@
 # - https://raw.githubusercontent.com/Propaganistas/Laravel-Disposable-Email/refs/heads/master/domains.json
 # Last updated: 2025-07-08T13:08:46.138Z
 
-<<<<<<< head
-=======
->>>>>>> e0e50f75fc78e02d9fff6d5c4f67e13f85a7a696
 0-00.usa.cc
 0-30-24.com
 0-attorney.com
