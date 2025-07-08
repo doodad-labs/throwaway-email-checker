@@ -11,8 +11,8 @@ on:
     branches:
       - main
     paths:
-      - './data/allow_list.txt'
-      - './scripts/fetch-domains.ts'
+      - 'data/allow_list.txt'
+      - 'scripts/fetch-domains.ts'
 
 jobs:
   generate-image:
