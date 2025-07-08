@@ -7,7 +7,7 @@
 // - https://raw.githubusercontent.com/wesbos/burner-email-providers/refs/heads/master/emails.txt
 // - https://deviceandbrowserinfo.com/api/emails/disposable
 // - https://raw.githubusercontent.com/Propaganistas/Laravel-Disposable-Email/refs/heads/master/domains.json
-// Last updated: 2025-07-08T11:07:48.876Z
+// Last updated: 2025-07-08T11:31:44.958Z
 
 /**
  * Array of disposable email domains.
@@ -73106,12 +73106,6 @@ export const domainArray: string[] = [
 	"tous.moakt.cc",
 	"soodam.disbox.org",
 	"sddfds.moakt.ws",
-	"SolarNyx.com",
-	"AllWebEmails.com",
-	"InboxOrigin.com",
-	"OpenMail.pro",
-	"MailMagnet.co",
-	"HorizonsPost.com",
 	"mzon.store",
 	"e.emirates.email",
 	"aza.gg",
@@ -175616,7 +175610,13 @@ export const domainArray: string[] = [
 	"tempsmtp.com",
 	"imail.edu.pl",
 	"yahoomail.pro",
-	"fmptestuje.pl"
+	"fmptestuje.pl",
+	"SolarNyx.com",
+	"AllWebEmails.com",
+	"InboxOrigin.com",
+	"OpenMail.pro",
+	"MailMagnet.co",
+	"HorizonsPost.com"
 ];
 
 /** 
