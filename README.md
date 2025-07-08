@@ -1,5 +1,12 @@
 # Throwaway - The Fastest Email Validator & Disposable Email Checker
 
+![GitHub License](https://img.shields.io/github/license/doodad-labs/throwaway-email-checker?style=flat-square)
+![NPM Unpacked Size](https://img.shields.io/npm/unpacked-size/throwaway-email?style=flat-square)
+![NPM Version](https://img.shields.io/npm/v/throwaway-email?style=flat-square)
+
+
+
+
 A high-performance email validation library featuring real-time disposable email detection. Our database is continuously updated through automated aggregation of disposable domains from trusted community sources.
 
 <!-- disposable database size: the number between the backticks on the next line will be automatically updated -->
