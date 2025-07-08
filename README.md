@@ -14,7 +14,7 @@ Currently **`183,483`** known disposable domains detected, this updates every we
 
 *This project automatically maintains its disposable email domain list through workflows and scraping, but relies on open-source contributions to keep scrapers and filters up-to-date—[learn how to help](#contributions).*
 
-## Usage
+## Installation & Usage
 
 While this is primarily a Node.js package, you can also access the raw disposable domain list directly at: 📁 [data/domains.txt](https://raw.githubusercontent.com/doodad-labs/throwaway-email-checker/refs/heads/main/data/domains.txt)
 
