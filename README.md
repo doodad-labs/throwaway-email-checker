@@ -13,7 +13,8 @@ While this is primarily a Node.js package, you can also access the raw disposabl
 
 ### Installation
 ```bash
-npm install throwaway-email
+# make sure to use @latest since this package updates every week
+npm install throwaway-email@latest
 ```
 
 ### Basic Validation
@@ -121,7 +122,7 @@ Found an issue? Open a ticket or submit a fix!
 
 ### Getting Started:  
 1. Check the [Good First Issues](https://github.com/doodad-labs/throwaway-email-checker/contribute) label.  
-2. Follow our [Contribution Guidelines](LINK_TO_GUIDELINES).  
+2. Follow our [Contribution Guidelines](CONTRIBUTING.md).  
 
 **Every contribution—big or small—helps keep the internet safer and more transparent!**  
 
