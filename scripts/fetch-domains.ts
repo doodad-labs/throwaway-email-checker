@@ -5,6 +5,8 @@ const OUTPUT_FILE_PATH = './src/data/domains.ts'; // Output path for the generat
 const OUTPUT_LIST_PATH = './data/domains.txt'; // Output path for the generated plain text file
 const INPUT_ALLOWLIST_PATH = './data/allow_list.txt'; // Path to the allowlist file
 
+let current_list_size = 0; // Variable to track the current size of the disposable email list
+
 const allowlist_txt = [
     'https://raw.githubusercontent.com/disposable-email-domains/disposable-email-domains/refs/heads/main/allowlist.conf'
 ]
@@ -20,6 +22,10 @@ const blacklists_json = [
     {
         'url': 'https://deviceandbrowserinfo.com/api/emails/disposable',
         'key': '.' // The key '.' indicates that the JSON structure is a flat array of strings
+    },
+    {
+        'url': 'https://raw.githubusercontent.com/Propaganistas/Laravel-Disposable-Email/refs/heads/master/domains.json',
+        'key': '.'
     }
 ]
 
@@ -114,6 +120,7 @@ async function updateDomainList() {
         const disposablesListContent = fs.readFileSync(OUTPUT_LIST_PATH, 'utf-8');
         const disposablesListLines = disposablesListContent.split('\n').filter(line => line.trim() && !line.startsWith('#')).map(line => line.trim().toLowerCase());
         disposables = new Set(disposablesListLines);
+        current_list_size = disposablesListLines.length;
     }
 
     console.log(`Starting with ${disposables.size} disposable domains.`);
@@ -245,6 +252,7 @@ updateDomainList().then((data) => {
     console.log('Data fetched successfully');
     console.log(`Allowlist contains ${allowlistSet.size} domains.`);
     console.log(`Disposables contains ${data.length} domains.`);
+    console.log(`${data.length - current_list_size} new disposable domains added since last run.`);
     console.log('Writing to file...');
     parseAndGenerateDomainFile(data)
     updateReadme(data)
