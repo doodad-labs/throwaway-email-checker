@@ -9,7 +9,7 @@ Currently **`183,483`** known disposable domains detected, this updates every we
 
 ## Usage
 
-While this is primarily a Node.js package, you can also access the raw disposable domain list directly at: 📁 [data/domains.txt]([data/domains.txt](https://raw.githubusercontent.com/doodad-labs/throwaway-email-checker/refs/heads/main/data/domains.txt))
+While this is primarily a Node.js package, you can also access the raw disposable domain list directly at: 📁 [data/domains.txt](https://raw.githubusercontent.com/doodad-labs/throwaway-email-checker/refs/heads/main/data/domains.txt)
 
 ### Installation
 ```bash
