@@ -4,7 +4,6 @@ import fs from 'fs';
 const OUTPUT_FILE_PATH = './src/data/domains.ts'; // Output path for the generated TypeScript file
 const OUTPUT_LIST_PATH = './data/domains.txt'; // Output path for the generated plain text file
 const INPUT_ALLOWLIST_PATH = './data/allow_list.txt'; // Path to the allowlist file
-
 let current_list_size = 0; // Variable to track the current size of the disposable email list
 
 const allowlist_txt = [
