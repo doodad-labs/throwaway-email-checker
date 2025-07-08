@@ -1,0 +1,4 @@
+# A manual allow list, this allows contributors to add domains that may be false flagged
+
+gmail.com
+outlook.com

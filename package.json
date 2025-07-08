@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "fetch-tlds": "tsx scripts/fetch-tlds.ts"
+    "fetch-tlds": "tsx scripts/fetch-tlds.ts",
+    "fetch-domains": "tsx scripts/fetch-domains.ts"
   },
   "repository": {
     "type": "git",

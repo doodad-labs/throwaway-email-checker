@@ -1,11 +1,11 @@
-name: Fetch TLDs and Generate Source File (Monthly)
+name: Fetch Domains and Generate Source File (Weekly)
 
 permissions:
   contents: write
 
 on:
   schedule:
-    - cron: '0 0 1 * *' # At 00:00 on day-of-month 1.
+    - cron: '0 0 * * 0' # At 00:00 on Sunday.
   workflow_dispatch: # Allow manual triggering
 
 jobs:
@@ -24,15 +24,15 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Fetch TLDs and generate source file
+      - name: Fetch Domains and generate source file
         env:
           GITHUB_USERNAME: ${{ github.repository_owner }}
-        run: npm run fetch-tlds
+        run: npm run fetch-domains
 
       - name: Commit generated source
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          git add src/data/tlds.ts data/tlds.txt
-          git commit -m "Monthly TLD update"
+          git add src/data/domains.ts data/domains.txt
+          git commit -m "Weekly Domain update"
           git push

@@ -1,8 +1,8 @@
-/* 
-Drawbacks to not using regex: the longer the email, the more complex the validation logic becomes resulting in a performance hit.
-*/
+// Drawbacks to not using regex: the longer the email, the more complex the validation logic becomes resulting in a performance hit.
+// Remember that regex is not always the best solution for every problem, especially when it comes to performance and readability.
+// This code is a performance-optimized email validation function that adheres to RFC standards and ICANN requirements.
 
-import { isTldValid, tldSet } from './data/tlds';
+import { tldSet } from './data/tlds';
 
 export default function (email: string, validateTld: boolean = true): boolean {
     const len = email.length;

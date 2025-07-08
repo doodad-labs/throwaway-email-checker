@@ -144,12 +144,12 @@ const emails: [string, boolean][] = [
     ["oower\"$wr@2342.as", true],
     ["local part@domain.com", false],
     ["\"local part\"@domain.com", false],
-
     ["much.”more\\ unusual”@example.com", true],
     ["very.unusual.”@”.unusual.com@example.com", false],
 ]
 
 console.log('Valid\t| throwaway\t| email-validator  | is-valid-email-address\t| Email')
+console.log('--------|---------------|------------------|----------------------------|--------------------------------------------------');
 
 let ourScore = 0;
 let emailValidatorScore = 0;
@@ -176,6 +176,6 @@ emails.forEach(email => {
 });
 
 console.log(`\nResults:`);
-console.log(`Our validation: ${ourScore}/${emails.length} (${(ourScore / emails.length * 100).toFixed(2)}%)`);
-console.log(`email-validator: ${emailValidatorScore}/${emails.length} (${(emailValidatorScore / emails.length * 100).toFixed(2)}%)`);
-console.log(`shelf-validator: ${shelfValidatorScore}/${emails.length} (${(shelfValidatorScore / emails.length * 100).toFixed(2)}%)`);
+console.log(`Our validation: \t${ourScore}/${emails.length} (${(ourScore / emails.length * 100).toFixed(2)}%)`);
+console.log(`email-validator: \t${emailValidatorScore}/${emails.length} (${(emailValidatorScore / emails.length * 100).toFixed(2)}%)`);
+console.log(`is-valid-email-address: ${shelfValidatorScore}/${emails.length} (${(shelfValidatorScore / emails.length * 100).toFixed(2)}%)`);

@@ -10,7 +10,6 @@ const quotedRegEx = /^"[A-Za-z0-9+\-!#$%&'*/=?^_`{|}~(),:;<>@[\]\\ ]+"$/g;
 const quotedElementsRegEx = /"[A-Za-z0-9+\-!#$%&'*/=?^_`{|}~(),:;<>@[\]\\ ]+"/g;
 const unquotedRegex = /^[A-Za-z0-9+\-!#$%&'*/=?^_`{|}~.]+|[A-Za-z0-9+\-!#$%&'*/=?^_`{|}~.]+|(?:[\\][A-Za-z0-9+\-!#$%&'*/=?^_`{|}~.(),:;<>@[\]\\ "])+|^(?:[\\][A-Za-z0-9+\-!#$%&'*/=?^_`{|}~.(),:;<>@[\]\\ "])+/g;
 
-
 function convertMs(ms: number): string {
     // Ensure input is a number and non-negative
     if (typeof ms !== 'number' || ms < 0) {
@@ -175,10 +174,12 @@ const testEmails = [
     "very.unusual.”@”.unusual.com@example.com",
 ];
 
-const runs = 1_000_000
+const runs = 10_000_000
 let ourValidation = 0
 let emailValidator = 0
 let shelfValidator = 0;
+
+console.log(`\nBenchmarking ${runs.toLocaleString()} runs...`);
 
 for (let i = 0; i < runs; i++) {
     const email = testEmails[i++ % testEmails.length]
@@ -196,7 +197,6 @@ for (let i = 0; i < runs; i++) {
     shelfValidator += performance.now() - start;
 }
 
-console.log(`\nBenchmarking ${runs.toLocaleString()} runs...`);
 console.log(`Our Email Validator: \t\t\t\tavg: ${convertMs(ourValidation / runs)}`);
 console.log(`npmjs.com/email-validator: \t\t\tavg: ${convertMs(emailValidator / runs)}`);
 console.log(`npmjs.com/@shelf/is-valid-email-address: \tavg: ${convertMs(shelfValidator / runs)}`);

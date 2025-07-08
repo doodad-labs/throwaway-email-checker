@@ -2,6 +2,7 @@ import fs from 'fs';
 
 const ICAAN_TLDS_URL = 'https://data.iana.org/TLD/tlds-alpha-by-domain.txt'; // IANA's official TLD list URL
 const OUTPUT_FILE_PATH = './src/data/tlds.ts'; // Output path for the generated TypeScript file
+const OUTPUT_LIST_PATH = './data/tlds.txt'; // Output path for the generated plain text file
 const TLD_VALIDATION_REGEX = /^[a-zA-Z0-9-]+$/; // Regular expression to validate TLD patterns (letters, numbers, and hyphens)
 
 /**
@@ -23,15 +24,16 @@ async function parseAndGenerateTldFile(tlds: string[]): Promise<void> {
     // Generate the TypeScript file content
     const fileContent = `
 // AUTO-GENERATED FILE - DO NOT EDIT DIRECTLY
-// This file is regenerated whenever the TLD list is updated
+// Data sourced from IANA's official TLD list
 // Last updated: ${new Date().toISOString()}
 
 /**
  * Array of all valid top-level domains (TLDs).
- * Sourced from IANA's official list.
+ * @type {string[]}
+ * @constant
  */
 export const tldArray: string[] = [
-    ${tlds.map(tld => `"${tld}"`).join(',\n')}
+${tlds.map(tld => `\t"${tld}"`).join(',\n')}
 ];
 
 /** 
@@ -49,6 +51,24 @@ export const tldSet: Set<string> = new Set(tldArray);
         // Write the generated content to file
         await fs.promises.writeFile(OUTPUT_FILE_PATH, fileContent);
         console.log(`Successfully generated TLD file at ${OUTPUT_FILE_PATH}`);
+    } catch (error) {
+        console.error('Failed to write TLD file:', error);
+        throw error;
+    }
+
+    const txtContent = `# AUTO-GENERATED FILE - DO NOT EDIT DIRECTLY
+# Data sourced from IANA's official TLD list
+# Last updated: ${new Date().toISOString()}
+
+${tlds.join('\n')}`;
+
+
+    try {
+        // Ensure the directory exists before writing
+        await fs.promises.mkdir('./data', { recursive: true });
+        // Write the generated content to file
+        await fs.promises.writeFile(OUTPUT_LIST_PATH, txtContent);
+        console.log(`Successfully generated TLD file at ${OUTPUT_LIST_PATH}`);
     } catch (error) {
         console.error('Failed to write TLD file:', error);
         throw error;
