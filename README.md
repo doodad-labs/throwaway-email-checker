@@ -13,7 +13,8 @@ While this is primarily a Node.js package, you can also access the raw disposabl
 
 ### Installation
 ```bash
-npm install throwaway-email
+# make sure to use @latest since this package updates every week
+npm install throwaway-email@latest
 ```
 
 ### Basic Validation
