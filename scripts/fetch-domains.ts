@@ -1,39 +1,11 @@
 import { tldSet } from '../src/data/tlds'
+import { allowlist_txt, blacklists_txt, blacklists_json, blacklists_csv } from './aggregate-domains';
 import fs from 'fs';
 
 const OUTPUT_FILE_PATH = './src/data/domains.ts'; // Output path for the generated TypeScript file
 const OUTPUT_LIST_PATH = './data/domains.txt'; // Output path for the generated plain text file
 const INPUT_ALLOWLIST_PATH = './data/allow_list.txt'; // Path to the allowlist file
 let current_list_size = 0; // Variable to track the current size of the disposable email list
-
-const allowlist_txt = [
-    'https://raw.githubusercontent.com/disposable-email-domains/disposable-email-domains/refs/heads/main/allowlist.conf'
-]
-
-const blacklists_txt = [
-    'https://raw.githubusercontent.com/disposable/disposable-email-domains/refs/heads/master/domains.txt',
-    'https://raw.githubusercontent.com/disposable-email-domains/disposable-email-domains/refs/heads/main/disposable_email_blocklist.conf',
-    'https://raw.githubusercontent.com/7c/fakefilter/refs/heads/main/txt/data.txt',
-    'https://raw.githubusercontent.com/wesbos/burner-email-providers/refs/heads/master/emails.txt'
-]
-
-const blacklists_json = [
-    {
-        'url': 'https://deviceandbrowserinfo.com/api/emails/disposable',
-        'key': '.' // The key '.' indicates that the JSON structure is a flat array of strings
-    },
-    {
-        'url': 'https://raw.githubusercontent.com/Propaganistas/Laravel-Disposable-Email/refs/heads/master/domains.json',
-        'key': '.'
-    }
-]
-
-const blacklists_csv = [
-    {
-        'url': 'https://raw.githubusercontent.com/infiniteloopltd/TempEmailDomainMXRecords/refs/heads/master/TempEmailDomainMXRecords.csv',
-        'col': 1
-    }
-]
 
 let allowlistSet: Set<string> = new Set<string>();
 let disposables: Set<string> = new Set<string>();
