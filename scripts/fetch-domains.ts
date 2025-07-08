@@ -109,6 +109,15 @@ async function updateDomainList() {
         allowlistSet = new Set(allowlistLines);
     }
 
+    // Load the predefined allowlist and blacklists
+    if (fs.existsSync(OUTPUT_LIST_PATH)) {
+        const disposablesListContent = fs.readFileSync(OUTPUT_LIST_PATH, 'utf-8');
+        const disposablesListLines = disposablesListContent.split('\n').filter(line => line.trim() && !line.startsWith('#')).map(line => line.trim().toLowerCase());
+        disposables = new Set(disposablesListLines);
+    }
+
+    console.log(`Starting with ${disposables.size} disposable domains.`);
+
     for (const url of allowlist_txt) {
         const domains = await fetchData(url, null);
         domains.forEach(async (domain) => {
@@ -235,7 +244,7 @@ function updateReadme(domains: string[]) {
 updateDomainList().then((data) => {
     console.log('Data fetched successfully');
     console.log(`Allowlist contains ${allowlistSet.size} domains.`);
-    console.log(`Disposables contains ${disposables.size} domains.`);
+    console.log(`Disposables contains ${data.length} domains.`);
     console.log('Writing to file...');
     parseAndGenerateDomainFile(data)
     updateReadme(data)
