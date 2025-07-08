@@ -227,12 +227,17 @@ function updateReadme(domains: string[]) {
     const lines = readmeContent.split('\n');
     const disposableCount = domains.length;
 
+    console.log(lines)
+
     // Update the disposable email database size in the README
     const marker = '<!-- disposable database size: the number between the backticks on the next line will be automatically updated -->';
     const markerIndex = lines.findIndex(line => line.includes(marker));
     if (markerIndex !== -1) {
         // simply replace the number between the backticks
-        const regex = /`(\d+)`/;
+        const regex = /`(\d+)`|`([\d,]+)`/g;
+
+        console.log(lines[markerIndex + 1].match(regex))
+
         if (lines[markerIndex + 1].match(regex)) {
             lines[markerIndex + 1] = lines[markerIndex + 1].replace(regex, `\`${disposableCount.toLocaleString()}\``);
         }
