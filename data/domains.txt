@@ -7,7 +7,11 @@
 # - https://raw.githubusercontent.com/wesbos/burner-email-providers/refs/heads/master/emails.txt
 # - https://deviceandbrowserinfo.com/api/emails/disposable
 # - https://raw.githubusercontent.com/Propaganistas/Laravel-Disposable-Email/refs/heads/master/domains.json
+<<<<<<< HEAD
 # Last updated: 2025-07-08T13:07:39.209Z
+=======
+# Last updated: 2025-07-08T13:06:29.306Z
+>>>>>>> e0e50f75fc78e02d9fff6d5c4f67e13f85a7a696
 
 0-00.usa.cc
 0-30-24.com
