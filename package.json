@@ -1,6 +1,6 @@
 {
-  "name": "throwaway",
-  "version": "0.0.1",
+  "name": "throwaway-email",
+  "version": "0.2.08-07-2025",
   "description": "Reserved namespace",
   "main": "dist/index.js",
   "scripts": {
@@ -25,6 +25,12 @@
   "bugs": {
     "url": "https://github.com/doodad-labs/throwaway-email-checker/issues"
   },
+  "files": [
+    "dist/index.js",
+    "dist/index.d.ts",
+    "README.md",
+    "LICENSE"
+  ],
   "homepage": "https://github.com/doodad-labs/throwaway-email-checker#readme",
   "devDependencies": {
     "@shelf/is-valid-email-address": "^1.0.0",
@@ -32,6 +38,7 @@
     "@types/node": "^24.0.10",
     "email-validator": "^2.0.4",
     "jest": "^30.0.4",
+    "throwaway-email": "^0.2.8-07-2025",
     "ts-jest": "^29.4.0",
     "tsup": "^8.5.0",
     "tsx": "^4.20.3",

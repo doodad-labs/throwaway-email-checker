@@ -1,4 +1,4 @@
-import { domainArray, domainSet } from "../dist/data/domains";
+import { domainArray, domainSet } from "throwaway-email";
 
 function convertMs(ms: number): string {
     // Ensure input is a number and non-negative

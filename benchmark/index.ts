@@ -1,5 +1,5 @@
 import { performance } from 'perf_hooks';
-import validation from '../dist';
+import validation from 'throwaway-email';
 import { isValidEmail } from '@shelf/is-valid-email-address'
 import validator from 'email-validator';
 
