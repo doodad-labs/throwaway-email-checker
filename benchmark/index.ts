@@ -1,5 +1,5 @@
 import { performance } from 'perf_hooks';
-import validation from '../src/validation';
+import validation from '../src';
 
 const tester = /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
 const twoDotsRegex = /\.{2,}/g;
