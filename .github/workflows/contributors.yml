@@ -1,37 +1,36 @@
 name: update-contributors-svg
 
 on:
-  workflow_dispatch: # Can trigger manually
+  workflow_dispatch:
   schedule:
-    - cron: '0 7 * * *' # Schedule on everyday 7:00
+    - cron: '0 7 * * *' # Runs daily at 7:00 UTC
 
 jobs:
   update-svg:
     name: Update contributors SVG
-    runs-on: ubuntu-latest # You can also try macos-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
-      - name: Set node
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: lts/*
+          cache: 'pnpm'
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v2.2.2
+        uses: pnpm/action-setup@v2
         with:
-          version: 7
-      
-      - name: Install deps
-        run: pnpm install
+          version: 8
+          
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Run SVG generation script
         run: pnpx make-github-contributor-svg -t ${{ secrets.GITHUB_TOKEN }} -o doodad-labs -r throwaway-email-checker
 
-      - name: Commit
-        uses: EndBug/add-and-commit@v4
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
         with:
           message: "chore(workflow): update contributors image"
           add: ".github-contributors/*"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
