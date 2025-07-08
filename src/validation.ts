@@ -3,8 +3,9 @@
 // This code is a performance-optimized email validation function that adheres to RFC standards and ICANN requirements.
 
 import { tldSet } from './data/tlds';
+import { domainSet } from './data/domains';
 
-export default function (email: string, validateTld: boolean = true): boolean {
+export default function (email: string, validateTld: boolean = true, blockDisposables: boolean = true): boolean {
     const len = email.length;
 
     // RFC 5321 (Section 4.5.3.1.3) Maximum length of an email address is 254 characters
@@ -93,5 +94,23 @@ export default function (email: string, validateTld: boolean = true): boolean {
     }
 
     const tld = email.substring(lastDotIndex + 1);
-    return tldSet.has(tld.toLowerCase()); // Use Set for O(1) lookup
+    if (!tldSet.has(tld.toLowerCase())) {
+        // If TLD is not in the set, return false
+        // This is a quick O(1) lookup using a Set
+        return false;
+    }
+    
+    if (blockDisposables === false) {
+        return true; // Skip disposable email check if not required
+    }
+
+    // Check if the Domain is disposable
+    const domain = email.substring(atIndex + 1, len);
+    if (domainSet.has(domain.toLowerCase())) {
+        // If the domain is in the disposable set, return false
+        // This is a quick O(1) lookup using a Set
+        return false;
+    }
+
+    return true; // All checks passed, email is valid
 }
