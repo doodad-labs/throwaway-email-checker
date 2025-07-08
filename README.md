@@ -36,7 +36,7 @@ validEmail("john..doe@dispose.it", true, false)  // false - the local part isnt 
 
 ## Benchmarking
 
-All benchmarks were measured over 10 million runs (averaged), executing each package according to its official documentation. Tests were conducted from an imported state to reflect real-world usage. You can verify these results by running the benchmarking script: [`benchmark/index.ts`](https://github.com/doodad-labs/throwaway-email-checker/blob/main/benchmark/index.ts).
+All benchmarks were measured over 10 million runs (averaged), executing each package according to its official documentation. Tests were conducted from an imported state to reflect real-world usage. All runs used the same inputs. You can verify these results by running the benchmarking script: [`benchmark/index.ts`](https://github.com/doodad-labs/throwaway-email-checker/blob/main/benchmark/index.ts).
 
 | Package | Avg. Time (per validation) | Validation Logic |
 |---------|----------------------------|------------------|
