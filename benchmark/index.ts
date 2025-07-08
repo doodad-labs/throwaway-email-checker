@@ -1,14 +1,7 @@
 import { performance } from 'perf_hooks';
 import validation from '../dist';
-
-const tester = /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
-const twoDotsRegex = /\.{2,}/g;
-const domainRegex = /([\da-z.-]+)(\.)((?!.*\.$)[a-z.]{2,6})/g;
-const localPartRegex = /.+(?=@)/;
-const dotsOnEdgesRegex = /^[.]|[.]$/g;
-const quotedRegEx = /^"[A-Za-z0-9+\-!#$%&'*/=?^_`{|}~(),:;<>@[\]\\ ]+"$/g;
-const quotedElementsRegEx = /"[A-Za-z0-9+\-!#$%&'*/=?^_`{|}~(),:;<>@[\]\\ ]+"/g;
-const unquotedRegex = /^[A-Za-z0-9+\-!#$%&'*/=?^_`{|}~.]+|[A-Za-z0-9+\-!#$%&'*/=?^_`{|}~.]+|(?:[\\][A-Za-z0-9+\-!#$%&'*/=?^_`{|}~.(),:;<>@[\]\\ "])+|^(?:[\\][A-Za-z0-9+\-!#$%&'*/=?^_`{|}~.(),:;<>@[\]\\ "])+/g;
+import { isValidEmail } from '@shelf/is-valid-email-address'
+import validator from 'email-validator';
 
 function convertMs(ms: number): string {
     // Ensure input is a number and non-negative
@@ -40,108 +33,6 @@ function convertMs(ms: number): string {
         const nanoseconds = (ms / ns).toFixed(2);
         return `${nanoseconds}ns`;
     }
-}
-
-function npmjs_com_email_validator(email: string): boolean {
-    if (!email)
-
-        return false;
-
-
-
-    if (email.length > 254)
-
-        return false;
-
-
-
-    var valid = tester.test(email);
-
-    if (!valid)
-
-        return false;
-
-
-
-    // Further checking of some things regex can't handle
-
-    var parts = email.split("@");
-
-    if (parts[0].length > 64)
-
-        return false;
-
-
-
-    var domainParts = parts[1].split(".");
-
-    if (domainParts.some(function (part) { return part.length > 63; }))
-
-        return false;
-
-    return true;
-}
-
-function npmjs_com_shelf_is_valid_email_address(email: string): boolean {
-    if (email.match(twoDotsRegex)) {
-
-        return false;
-
-    }
-
-    const domainPart = email.replace(localPartRegex, '');
-
-    if (!domainPart.match(domainRegex)) {
-
-        return false;
-
-    }
-
-    const localPartMatch = email.match(localPartRegex);
-
-    if (!localPartMatch) {
-
-        return false;
-
-    }
-
-    const localPart = localPartMatch[0];
-
-    if (localPart.match(dotsOnEdgesRegex)) {
-
-        return false;
-
-    }
-
-    const quotedParts = email.match(/".+?"/g);
-
-    if (quotedParts && !quotedParts.every(item => item.match(quotedRegEx)?.length)) {
-
-        return false;
-
-    }
-
-    const unquotedPart = quotedParts ? localPart.replaceAll(quotedElementsRegEx, '') : localPart;
-
-    if (unquotedPart === '') {
-
-        return true;
-
-    }
-
-    const unquotedPartMatch = unquotedPart && unquotedPart.match(unquotedRegex);
-
-    if (unquotedPartMatch === null ||
-
-        unquotedPartMatch?.reduce((acc, item) => acc.replace(item, ''), unquotedPart)
-
-            .length) {
-
-        return false;
-
-    }
-
-    return true;
 }
 
 const testEmails = [
@@ -189,11 +80,11 @@ for (let i = 0; i < runs; i++) {
     ourValidation += performance.now() - start;
 
     start = performance.now();
-    npmjs_com_email_validator(email);
+    validator.validate(email);
     emailValidator += performance.now() - start;
 
     start = performance.now();
-    npmjs_com_shelf_is_valid_email_address(email);
+    isValidEmail(email);
     shelfValidator += performance.now() - start;
 }
 

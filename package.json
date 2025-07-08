@@ -27,8 +27,10 @@
   },
   "homepage": "https://github.com/doodad-labs/throwaway-email-checker#readme",
   "devDependencies": {
+    "@shelf/is-valid-email-address": "^1.0.0",
     "@types/jest": "^30.0.0",
     "@types/node": "^24.0.10",
+    "email-validator": "^2.0.4",
     "jest": "^30.0.4",
     "ts-jest": "^29.4.0",
     "tsup": "^8.5.0",
