@@ -7,29 +7,40 @@ A high-performance email validation library featuring real-time disposable email
 
 ## Usage
 
-```
-npm i throwaway
+While this is primarily a Node.js package, you can also access the raw disposable domain list directly at: 📁 [data/domains.txt](data/domains.txt)
+
+### Installation
+```bash
+npm install throwaway
 ```
 
+### Basic Validation
 ```ts
+import validEmail from 'throwaway';
 
-import validEmail from 'throwaway'
-
-// Full Email validation (TLD + Disposable)
-validEmail("johndoe@gmail.com")   // true
-validEmail("johndoe@gmail.con")   // false - the TLD is'nt ICANN valid
-validEmail("johndoe@dispose.it")  // false - the domain is disposable
-validEmail("john..doe@gmail.com") // false - the local part isnt RFC 5322 compliant
-
-// Disable ICANN TLD (top level domain) validation
-validEmail("johndoe@gmail.con", false)  // true - disable ICANN TLD validation
-validEmail("johndoe@gmail.c", false)    // false - the TLD is'nt valid since TLDS must be >= 2
-
-// Disable Disposable Domain Filter
-validEmail("johndoe@dispose.it", true, false)    // true
-validEmail("john..doe@dispose.it", true, false)  // false - the local part isnt RFC 5322 compliant
-
+// Standard validation (TLD + Disposable check)
+validEmail("johndoe@gmail.com")    // true
+validEmail("johndoe@gmail.con")    // false (invalid TLD)
+validEmail("johndoe@dispose.it")   // false (disposable domain)
+validEmail("john..doe@gmail.com")  // false (invalid local part per RFC 5322)
 ```
+
+### Advanced Options
+```ts
+// Disable ICANN TLD validation (still requires ≥2 character TLD)
+validEmail("johndoe@gmail.con", false)  // true
+validEmail("johndoe@gmail.c", false)    // false (TLD too short)
+
+// Disable disposable domain check
+validEmail("johndoe@dispose.it", true, false)    // true
+validEmail("john..doe@dispose.it", true, false)  // false (invalid local part)
+```
+
+### Parameter Reference
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `checkTld` | boolean | `true` | Verify ICANN-approved TLDs |
+| `checkDisposable` | boolean | `true` | Check against disposable domains |
 
 ## Benchmarking
 
