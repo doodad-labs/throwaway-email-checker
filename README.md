@@ -8,6 +8,8 @@ A lightning fast email validation and disposable email checker. powered by autom
 **Current Disposable Email Domain List Size: `72,144`** \
 <sub>This value is automatically updated.</sub>
 
+<br>
+
 ## Usage
 
 ```
