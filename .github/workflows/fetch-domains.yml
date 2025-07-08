@@ -1,4 +1,4 @@
-name: Fetch Domains and Generate Source File (Weekly)
+name: Fetch Domains and Generate Source File (Weekly or on File Change)
 
 permissions:
   contents: write
@@ -7,6 +7,12 @@ on:
   schedule:
     - cron: '0 0 * * 0' # At 00:00 on Sunday.
   workflow_dispatch: # Allow manual triggering
+  push:
+    branches:
+      - main
+    paths:
+      - './data/allow_list.txt'
+      - './scripts/fetch-domains.ts'
 
 jobs:
   generate-image:
