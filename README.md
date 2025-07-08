@@ -47,3 +47,13 @@ All benchmarks were measured over 10 million runs (averaged), executing each pac
 2. **throwaway** provides more comprehensive validation features while maintaining better performance
 3. The benchmark reflects real-world usage patterns by testing from imported module state
 
+## Reporting Incorrectly Flagged Domains
+
+If you believe a legitimate domain has been mistakenly identified as disposable, you can help improve the validator by contributing to our allow list.
+
+**How to contribute:**
+1. Verify the domain is truly non-disposable (permanent email service)
+2. Add the domain to [`allow_list.txt`](./data/allow_list.txt)
+3. Submit a pull request with your addition
+
+We welcome community contributions to help maintain the accuracy of our validation system.
