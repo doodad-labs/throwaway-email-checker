@@ -28,6 +28,13 @@ const blacklists_json = [
     }
 ]
 
+const blacklists_csv = [
+    {
+        'url': 'https://raw.githubusercontent.com/infiniteloopltd/TempEmailDomainMXRecords/refs/heads/master/TempEmailDomainMXRecords.csv',
+        'col': 1
+    }
+]
+
 let allowlistSet: Set<string> = new Set<string>();
 let disposables: Set<string> = new Set<string>();
 
@@ -74,7 +81,7 @@ async function validateDomain(domain: string): Promise<boolean> {
     return true;
 }
 
-async function fetchData(url: string, key: string | null): Promise<string[]> {
+async function fetchData(url: string, key: string | null, col: number | null): Promise<string[]> {
 
     try {
         const response = await fetch(url)
@@ -92,11 +99,25 @@ async function fetchData(url: string, key: string | null): Promise<string[]> {
                 lines = json[key];
             }
 
-        } else {
-            const data = await response.text();
-            lines = data.split('\n').map((line: string) => line.trim().toLowerCase()).filter((line: string) => line && !line.startsWith('#'));
+            return lines;
+
         }
 
+        if (col) {
+            const data = await response.text();
+            lines = data.split('\n')
+                .map((line: string) => line.trim().toLowerCase())
+                .filter((line: string) => line && !line.startsWith('#'))
+                .map((line: string) => {
+                    const parts = line.split(',');
+                    return parts[col].trim().toLowerCase().replaceAll(/"/g, '');
+                });
+
+            return lines
+        }
+
+        const data = await response.text();
+        lines = data.split('\n').map((line: string) => line.trim().toLowerCase()).filter((line: string) => line && !line.startsWith('#'));
         return lines;
 
     } catch (error) {
@@ -124,32 +145,71 @@ async function updateDomainList() {
 
     console.log(`Starting with ${disposables.size} disposable domains.`);
 
-    for (const url of allowlist_txt) {
-        const domains = await fetchData(url, null);
-        domains.forEach(async (domain) => {
-            if (await validateDomain(domain)) {
-                allowlistSet.add(domain);
-            }
-        });
-    }
+    await Promise.allSettled([
+        new Promise(async (res) => {
+            for (const url of allowlist_txt) {
+                const domains = await fetchData(url, null, null);
+                domains.forEach(async (domain, i) => {
+                    if (await validateDomain(domain)) {
+                        allowlistSet.add(domain);
+                    }
 
-    for (const url of blacklists_txt) {
-        const domains = await fetchData(url, null);
-        domains.forEach(async (domain) => {
-            if (await validateDomain(domain) && !allowlistSet.has(domain)) {
-                disposables.add(domain);
+                    if (i === domains.length - 1) {
+                        console.log(`Fetched ${domains.length} domains from ${url}`);
+                        res(true);
+                    }
+                });
             }
-        });
-    }
+        }),
 
-    for (const { url, key } of blacklists_json) {
-        const domains = await fetchData(url, key);
-        domains.forEach(async (domain) => {
-            if (await validateDomain(domain) && !allowlistSet.has(domain)) {
-                disposables.add(domain);
+        new Promise(async (res) => {
+            for (const url of blacklists_txt) {
+                const domains = await fetchData(url, null, null);
+                domains.forEach(async (domain, i) => {
+                    if (await validateDomain(domain) && !allowlistSet.has(domain)) {
+                        disposables.add(domain);
+                    }
+
+                    if (i === domains.length - 1) {
+                        console.log(`Fetched ${domains.length} domains from ${url}`);
+                        res(true);
+                    }
+                });
+            }
+        }),
+
+        new Promise(async (res) => {
+            for (const { url, key } of blacklists_json) {
+                const domains = await fetchData(url, key, null);
+                domains.forEach(async (domain, i) => {
+                    if (await validateDomain(domain) && !allowlistSet.has(domain)) {
+                        disposables.add(domain);
+                    }
+
+                    if (i === domains.length - 1) {
+                        console.log(`Fetched ${domains.length} domains from ${url}`);
+                        res(true);
+                    }
+                })
+            }
+        }),
+
+        new Promise(async (res) => {
+            for (const { url, col } of blacklists_csv) {
+                const domains = await fetchData(url, null, col);
+                domains.forEach(async (domain, i) => {
+                    if (await validateDomain(domain) && !allowlistSet.has(domain)) {
+                        disposables.add(domain);
+                    }
+
+                    if (i === domains.length - 1) {
+                        console.log(`Fetched ${domains.length} domains from ${url}`);
+                        res(true);
+                    }
+                })
             }
         })
-    }
+    ])
 
     return [...disposables]
 }
