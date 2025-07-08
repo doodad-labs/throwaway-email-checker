@@ -7,7 +7,7 @@
 // - https://raw.githubusercontent.com/wesbos/burner-email-providers/refs/heads/master/emails.txt
 // - https://deviceandbrowserinfo.com/api/emails/disposable
 // - https://raw.githubusercontent.com/Propaganistas/Laravel-Disposable-Email/refs/heads/master/domains.json
-// Last updated: 2025-07-08T13:03:55.208Z
+// Last updated: 2025-07-08T13:06:29.248Z
 
 /**
  * Array of disposable email domains.
