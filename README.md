@@ -5,6 +5,8 @@ A high-performance email validation library featuring real-time disposable email
 <!-- disposable database size: the number between the backticks on the next line will be automatically updated -->
 Currently **`183,483`** known disposable domains detected, this updates every week.
 
+*This project automatically maintains its disposable email domain list through workflows and scraping, but relies on open-source contributions to keep scrapers and filters up-to-date—[learn how to help](#contributions).*
+
 ## Usage
 
 While this is primarily a Node.js package, you can also access the raw disposable domain list directly at: 📁 [data/domains.txt]([data/domains.txt](https://raw.githubusercontent.com/doodad-labs/throwaway-email-checker/refs/heads/main/data/domains.txt))
