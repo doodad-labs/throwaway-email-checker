@@ -1,4 +1,4 @@
-import { domainArray, domainSet } from "../src/data/domains";
+import { domainArray, domainSet } from "../dist/data/domains";
 
 function convertMs(ms: number): string {
     // Ensure input is a number and non-negative
