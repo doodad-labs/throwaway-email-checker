@@ -67,3 +67,58 @@ If you believe a legitimate domain has been mistakenly identified as disposable,
 3. Submit a pull request with your addition
 
 We welcome community contributions to help maintain the accuracy of our validation system.
+
+
+## License and Ethical Usage
+
+```
+GNU GENERAL PUBLIC LICENSE
+Version 3, 29 June 2007
+```  
+[Full License Text](https://github.com/doodad-labs/throwaway-email-checker/blob/main/LICENSE)
+
+### Open-Source Commitment
+This project is released under the **GPL-3.0 license**, which grants you the freedom to:
+- Use commercially  
+- Modify and distribute  
+- Apply for patent integration  
+
+**With the critical requirement that you:**  
+1. Disclose all modifications to the source code.  
+2. Keep derivative works equally open under GPL-3.0.  
+
+### Ethical Request
+While the license permits commercial use, I strongly believe:  
+🔓 **Data about disposable email domains should remain a public good**—free to access, analyze, and redistribute. If you profit from this work:  
+- **Publicly credit** this project (`doodad-labs/throwaway-email-checker`).  
+- **Never paywall** the core dataset or derived lists.  
+
+This ensures transparency and helps protect the internet from abuse.  
+
+## Contributions  
+
+This project is **automatically maintained** through web scraping and data aggregation, but our sources may become outdated, and some domains might be incorrectly flagged. **We need your help** to improve accuracy and keep this resource reliable!  
+
+### 🚀 First-Time Contributors Welcome!  
+We intentionally keep this project **beginner-friendly** to help newcomers start their open-source journey. No experience needed—just a willingness to learn!  
+
+### How You Can Help:  
+
+#### 🌍 **Translations**  
+Help make this project accessible globally by translating documentation or UI elements.  
+
+#### ✅ **Fix False Flags** (`allow_list.txt`)  
+If you spot a legitimate domain mistakenly flagged as disposable, submit a correction.  
+
+#### 📊 **Improve Data Sources**  
+- **Aggregate lists**: Contribute new sources of disposable email domains.  
+- **Scrapers**: Help maintain or improve our scrapers for temporary email providers.  
+
+#### 🐛 **Report Bugs & Suggest Enhancements**  
+Found an issue? Open a ticket or submit a fix!  
+
+### Getting Started:  
+1. Check the [Good First Issues](https://github.com/doodad-labs/throwaway-email-checker/contribute) label.  
+2. Follow our [Contribution Guidelines](LINK_TO_GUIDELINES).  
+
+**Every contribution—big or small—helps keep the internet safer and more transparent!**  
