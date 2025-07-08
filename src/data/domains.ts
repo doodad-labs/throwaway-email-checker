@@ -6,7 +6,7 @@
 // - https://raw.githubusercontent.com/7c/fakefilter/refs/heads/main/txt/data.txt
 // - https://raw.githubusercontent.com/wesbos/burner-email-providers/refs/heads/master/emails.txt
 // - https://deviceandbrowserinfo.com/api/emails/disposable
-// Last updated: 2025-07-08T09:18:27.035Z
+// Last updated: 2025-07-08T10:00:59.792Z
 
 /**
  * Array of disposable email domains.

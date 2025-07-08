@@ -200,12 +200,45 @@ ${domains.join('\n')}`;
     }
 }
 
+function updateReadme(domains: string[]) {
+    const readmePath = './README.md';
+    if (!fs.existsSync(readmePath)) {
+        console.error(`README.md not found at ${readmePath}`);
+        return;
+    }
+
+    let readmeContent = fs.readFileSync(readmePath, 'utf-8');
+    const lines = readmeContent.split('\n');
+    const disposableCount = domains.length;
+
+    // Update the disposable email database size in the README
+    const marker = '<!-- disposable database size: the number between the backticks on the next line will be automatically updated -->';
+    const markerIndex = lines.findIndex(line => line.includes(marker));
+    if (markerIndex !== -1) {
+        // simply replace the number between the backticks
+        const regex = /`(\d+)`/;
+        if (lines[markerIndex + 1].match(regex)) {
+            lines[markerIndex + 1] = lines[markerIndex + 1].replace(regex, `\`${disposableCount.toLocaleString()}\``);
+        }
+    }
+
+    // Write the updated content back to the README file
+    try {
+        fs.writeFileSync(readmePath, lines.join('\n'), 'utf-8');
+        console.log(`README.md updated with disposable email database size: ${disposableCount}`);
+    } catch (error) {
+        console.error(`Failed to update README.md:`, error);
+        return;
+    }
+}
+
 updateDomainList().then((data) => {
     console.log('Data fetched successfully');
     console.log(`Allowlist contains ${allowlistSet.size} domains.`);
     console.log(`Disposables contains ${disposables.size} domains.`);
     console.log('Writing to file...');
     parseAndGenerateDomainFile(data)
+    updateReadme(data)
 }).catch(err => {
     console.error('Error fetching data:', err);
 });
