@@ -13,12 +13,12 @@ While this is primarily a Node.js package, you can also access the raw disposabl
 
 ### Installation
 ```bash
-npm install throwaway
+npm install throwaway-email
 ```
 
 ### Basic Validation
 ```ts
-import validEmail from 'throwaway';
+import validEmail from 'throwaway-email';
 
 // Standard validation (TLD + Disposable check)
 validEmail("johndoe@gmail.com")    // true
