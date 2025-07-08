@@ -239,6 +239,7 @@ function updateReadme(domains: string[]) {
     }
 
     // Write the updated content back to the README file
+    
     try {
         fs.writeFileSync(readmePath, lines.join('\n'), 'utf-8');
         console.log(`README.md updated with disposable email database size: ${disposableCount}`);
