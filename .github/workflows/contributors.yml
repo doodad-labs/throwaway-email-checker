@@ -16,18 +16,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: lts/*
-          cache: 'pnpm'
+          cache: 'npm'
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
-          
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: npm install
 
       - name: Run SVG generation script
-        run: pnpx make-github-contributor-svg -t ${{ secrets.GITHUB_TOKEN }} -o doodad-labs -r throwaway-email-checker
+        run: npx make-github-contributor-svg -t ${{ secrets.GITHUB_TOKEN }} -o doodad-labs -r throwaway-email-checker
 
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
