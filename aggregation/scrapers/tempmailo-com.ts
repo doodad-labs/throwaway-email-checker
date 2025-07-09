@@ -1,11 +1,11 @@
 import playwright from 'playwright';
 import validateDomain from '../utils/validate-domain';
-import { addToDisposableList } from '../utils/add-to-list';
 import extractDomain from '../utils/extract-domain';
-import 'dotenv/config';
+
+import processDomainsResults from './utils/process';
+import launchBrowserWithProxy, { BROWSERS, navigateToPage } from './utils/launch';
 
 const URL = "https://tempmailo.com/";
-const BROWSERS = ['chromium', 'firefox', 'webkit'] as const;
 const CHANGES = 30; // Number of times to change the email
 const WAIT_TIMEOUT = {
     navigation: 500,
@@ -30,7 +30,7 @@ export default async function scrapeTempMailoDomains() {
         }
     }
 
-    processDomainsResults(domains);
+    processDomainsResults(domains, URL);
 }
 
 async function processBrowser(browserType: typeof BROWSERS[number]) {
@@ -57,35 +57,6 @@ async function processBrowser(browserType: typeof BROWSERS[number]) {
     }
 
     return browserDomains;
-}
-
-async function launchBrowserWithProxy(browserType: typeof BROWSERS[number]) {
-    try {
-        console.log(`Launching browser: ${browserType}`);
-        return await playwright[browserType].launch({
-            proxy: {
-                server: process.env.PROXY_SERVER!,
-                username: process.env.PROXY_USER,
-                password: process.env.PROXY_PASS
-            }
-        });
-    } catch (error) {
-        console.error(`Failed to launch ${browserType}:`, error);
-        return null;
-    }
-}
-
-async function navigateToPage(browser: playwright.Browser, url: string) {
-    try {
-        const context = await browser.newContext();
-        const page = await context.newPage();
-        await page.goto(url, { waitUntil: 'domcontentloaded' });
-        await page.waitForTimeout(WAIT_TIMEOUT.navigation);
-        return page;
-    } catch (error) {
-        console.error('Navigation failed:', error);
-        return null;
-    }
 }
 
 async function handleConsent(page: playwright.Page, browserType: string) {
@@ -180,18 +151,6 @@ async function checkRateLimit(page: playwright.Page, browserType: string) {
         return true;
     }
     return false;
-}
-
-function processDomainsResults(domains: Set<string>) {
-    if (domains.size === 0) {
-        console.error('No valid domains found.');
-        return;
-    }
-
-    const domainList = [...domains];
-    console.log(`Found ${domainList.length} valid domains from tempmailo.com.`);
-    console.log(`Domains: ${domainList.join(', ')}`);
-    addToDisposableList(domainList);
 }
 
 if (require.main === module) {

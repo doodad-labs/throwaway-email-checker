@@ -1,40 +1,11 @@
 import playwright from 'playwright';
 import validateDomain from '../utils/validate-domain';
-import { addToDisposableList } from '../utils/add-to-list';
-import 'dotenv/config';
+
+import processDomainsResults from './utils/process';
+import launchBrowserWithProxy, { BROWSERS, navigateToPage } from './utils/launch';
 
 const URL = "https://mailtemp.uk/";
-const BROWSERS = ['chromium', 'firefox', 'webkit'] as const;
 const WAIT_TIMEOUT = { navigation: 1000, interaction: 500, waitFor: 5000 };
-
-async function launchBrowserWithProxy(browserType: typeof BROWSERS[number]) {
-    try {
-        console.log(`Launching browser: ${browserType}`);
-        return await playwright[browserType].launch({
-            proxy: {
-                server: process.env.PROXY_SERVER!,
-                username: process.env.PROXY_USER,
-                password: process.env.PROXY_PASS
-            }
-        });
-    } catch (error) {
-        console.error(`Failed to launch ${browserType}:`, error);
-        return null;
-    }
-}
-
-async function navigateToPage(browser: playwright.Browser, url: string) {
-    try {
-        const context = await browser.newContext();
-        const page = await context.newPage();
-        await page.goto(url, { waitUntil: 'domcontentloaded' });
-        await page.waitForTimeout(WAIT_TIMEOUT.navigation);
-        return page;
-    } catch (error) {
-        console.error('Navigation failed:', error);
-        return null;
-    }
-}
 
 async function extractDomainsFromPage(page: playwright.Page) {
     const domains = new Set<string>();
@@ -70,18 +41,6 @@ async function extractDomainsFromPage(page: playwright.Page) {
     return domains;
 }
 
-function processDomainsResults(domains: Set<string>) {
-    if (domains.size === 0) {
-        console.error('No valid domains found.');
-        return;
-    }
-
-    const domainList = [...domains];
-    console.log(`Found ${domainList.length} valid domains from mailtemp.uk.`);
-    console.log(`Domains: ${domainList.join(', ')}`);
-    addToDisposableList(domainList);
-}
-
 export default async function scrapeMailTempDomains() {
     console.log('Starting parallel scraping for mailtemp.uk...');
     const domains = new Set<string>();
@@ -98,7 +57,7 @@ export default async function scrapeMailTempDomains() {
         }
     }
 
-    processDomainsResults(domains);
+    processDomainsResults(domains, URL);
 }
 
 async function processBrowser(browserType: typeof BROWSERS[number]) {
