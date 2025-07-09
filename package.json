@@ -1,6 +1,6 @@
 {
   "name": "throwaway-email",
-  "version": "0.0.1-2025.07.08",
+  "version": "0.0.1-2025.07.09",
   "description": "A blazing-fast email validator and disposable email detector, powered by automated disposable domain aggregation.",
   "main": "dist/index.js",
   "scripts": {
@@ -40,7 +40,7 @@
     "email-validator": "^2.0.4",
     "jest": "^30.0.4",
     "playwright": "^1.53.2",
-    "throwaway-email": "^0.0.1-2025.7.1",
+    "throwaway-email": "0.0.1-2025.7.9",
     "ts-jest": "^29.4.0",
     "tsup": "^8.5.0",
     "tsx": "^4.20.3",
