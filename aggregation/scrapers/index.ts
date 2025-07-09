@@ -1,6 +1,7 @@
 import mailtemp_uk from './mailtemp-uk';
 import tmp_mail_io from './temp-mail-io';
 import tempmail_so from './tempmail-so';
+import tempmail100_com from './tempmail100-com';
 import tmpmailo_com from './tempmailo-com';
 
 
@@ -16,6 +17,10 @@ import tmpmailo_com from './tempmailo-com';
 
     await tempmail_so().catch(error => {
         console.error('\x1b[31mError in tempmail_so scraper:', error, '\x1b[0m');
+    });
+
+    await tempmail100_com().catch(error => {
+        console.error('\x1b[31mError in tempmail100_com scraper:', error, '\x1b[0m');
     });
 
     await tmpmailo_com().catch(error => {
