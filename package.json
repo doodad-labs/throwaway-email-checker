@@ -38,6 +38,7 @@
     "@types/node": "^24.0.10",
     "email-validator": "^2.0.4",
     "jest": "^30.0.4",
+    "playwright": "^1.53.2",
     "throwaway-email": "^0.0.1-2025.7.1",
     "ts-jest": "^29.4.0",
     "tsup": "^8.5.0",
