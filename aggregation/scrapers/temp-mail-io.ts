@@ -66,5 +66,6 @@ export default async function() {
         return;
     }
 
+    console.log(`Found ${[...domains].length} valid domains from temp-mail.io.`);
     addToDisposableList([...domains])
 }
