@@ -1,6 +1,6 @@
-import { tldSet } from '../src/data/tlds';
+import { tldSet } from '../../src/data/tlds';
 
-export default async function validateDomain(domain: string): Promise<boolean> {
+export default function validateDomain(domain: string): boolean {
     if (!domain || domain.length > 253) {
         return false;
     }

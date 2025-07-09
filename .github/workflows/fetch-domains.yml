@@ -12,8 +12,7 @@ on:
     branches:
       - main
     paths:
-      - 'data/allow_list.txt'
-      - 'scripts/fetch-domains.ts'
+      - 'scripts/aggregate-domains.ts'
 
 jobs:
   aggregate-domains:

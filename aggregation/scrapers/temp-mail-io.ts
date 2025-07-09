@@ -1,13 +1,19 @@
 import playwright from 'playwright';
 import validateDomain from '../utils/validate-domain';
-import addToList from '../utils/add-to-list';
+import { addToDisposableList } from '../utils/add-to-list';
 
 const url = "https://temp-mail.io/";
 
 export default async function() {
+
+    console.log('Starting scraping for temp-mail.io...');
+
     const domains: Set<string> = new Set<string>();
 
     for (const browserType of ['chromium', 'firefox', 'webkit']) {
+
+        console.log(`Launching browser: ${browserType}`);
+
         const browser = await playwright[browserType].launch();
         const context = await browser.newContext();
         const page = await context.newPage();
@@ -60,5 +66,5 @@ export default async function() {
         return;
     }
 
-    addToList([...domains])
+    addToDisposableList([...domains])
 }

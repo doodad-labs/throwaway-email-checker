@@ -1,6 +1,6 @@
 # AUTO-GENERATED FILE - DO NOT EDIT DIRECTLY
 # Data sourced from IANA's official TLD list
-# Last updated: 2025-07-08T09:20:40.069Z
+# Last updated: 2025-07-09T12:31:26.349Z
 
 aaa
 aarp

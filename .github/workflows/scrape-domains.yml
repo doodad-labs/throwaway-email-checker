@@ -28,6 +28,9 @@ jobs:
       - name: Install All Dependencies
         run: npm ci # Install both production and development dependencies
 
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
       - name: Scrape Temporary Email Domains
         env:
           GITHUB_OWNER: ${{ github.repository_owner }}
