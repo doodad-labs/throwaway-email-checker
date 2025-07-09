@@ -1,7 +1,7 @@
 {
   "name": "throwaway-email",
   "version": "0.0.1-2025.07.09",
-  "description": "A blazing-fast email validator and disposable email detector, powered by automated disposable domain aggregation.",
+  "description": "A blazing-fast email validator and disposable email detector, powered by automated disposable domain aggregation and scraping.",
   "main": "dist/index.js",
   "scripts": {
     "test": "jest",
