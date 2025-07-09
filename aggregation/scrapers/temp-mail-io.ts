@@ -4,7 +4,7 @@ import { addToDisposableList } from '../utils/add-to-list';
 
 const url = "https://temp-mail.io/";
 
-export default async function() {
+export default async function main() {
 
     console.log('Starting scraping for temp-mail.io...');
 
@@ -52,7 +52,7 @@ export default async function() {
             const domainText = await option.innerText();
             if (domainText) {
                 const normalizedDomain = domainText.trim().toLowerCase().replace('\\n', '');
-                if (await validateDomain(normalizedDomain)) {
+                if (validateDomain(normalizedDomain)) {
                     domains.add(normalizedDomain);
                 }
             }
@@ -68,4 +68,10 @@ export default async function() {
 
     console.log(`Found ${[...domains].length} valid domains from temp-mail.io.`);
     addToDisposableList([...domains])
+}
+
+if (require.main === module) {
+    main().catch(error => {
+        console.error('Error during scraping:', error);
+    });
 }
