@@ -1,12 +1,13 @@
-name: Fetch Domains and Generate Source File (Weekly or on File Change)
+name: Domain Aggregation and Source Generation
+description: Aggregates domains from multiple sources and generates source files (runs weekly or on data/script changes)
 
 permissions:
   contents: write
 
 on:
   schedule:
-    - cron: '0 0 * * 0' # At 00:00 on Sunday.
-  workflow_dispatch: # Allow manual triggering
+    - cron: '0 3 * * 0' # Weekly at 03:00 UTC Sunday
+  workflow_dispatch: # Manual trigger option
   push:
     branches:
       - main
@@ -15,30 +16,32 @@ on:
       - 'scripts/fetch-domains.ts'
 
 jobs:
-  generate-image:
+  aggregate-domains:
+    name: Aggregate Domains and Update Repository
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
+      - name: Set Up Node.js Environment
         uses: actions/setup-node@v3
         with:
           node-version: 18
+          cache: 'npm'
 
-      - name: Install dependencies
-        run: npm install
+      - name: Install Dependencies
+        run: npm ci # Using ci for cleaner installs in CI environments
 
-      - name: Fetch Domains and generate source file
+      - name: Run Domain Aggregation
         env:
-          GITHUB_USERNAME: ${{ github.repository_owner }}
+          GITHUB_OWNER: ${{ github.repository_owner }}
         run: npm run fetch-domains
 
-      - name: Commit generated source
+      - name: Commit Aggregated Domain Data
         run: |
-          git config --global user.name "Throwaway Automated Aggregator"
+          git config --global user.name "Domain Aggregator Bot"
           git config --global user.email "actions@github.com"
           git add src/data/domains.ts data/domains.txt README.md
-          git commit -m "Weekly Domain update"
+          git diff --quiet && git diff --staged --quiet || git commit -m "Automated domain list update [skip ci]"
           git push

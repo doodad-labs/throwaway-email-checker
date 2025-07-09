@@ -7,7 +7,7 @@
 # - https://raw.githubusercontent.com/wesbos/burner-email-providers/refs/heads/master/emails.txt
 # - https://deviceandbrowserinfo.com/api/emails/disposable
 # - https://raw.githubusercontent.com/Propaganistas/Laravel-Disposable-Email/refs/heads/master/domains.json
-# Last updated: 2025-07-09T11:40:39.729Z
+# Last updated: 2025-07-09T11:42:32.590Z
 
 0-00.usa.cc
 0-30-24.com
@@ -30935,6 +30935,7 @@ bossman.chat
 bossmanjack.lol
 bossmanjack.net
 bossmanjack.shop
+bossmanjack.xyz
 bosterpremium.com
 boston-towing-service.info
 bostoncocainerehab.com
@@ -33172,6 +33173,7 @@ buyonlinestratterapills.com
 buyordie.info
 buyovz.com
 buypill-rx.info
+buypq.anonbox.net
 buypresentation.com
 buyprice.co
 buyprosemedicine.com
@@ -108683,6 +108685,7 @@ moviedaynight.com
 moviefilms.su
 moviefreedo.com
 movieindoxxi.online
+movieisme.co
 movieisme.com
 moviekuupdate.xyz
 movienox.com
@@ -168274,6 +168277,7 @@ viphospitality.se
 vipilitka.buzz
 vipiskaegryult.xyz
 vipitv.com
+vipivip.vip
 vipizka-iz-egrp.ru
 vipjis.top
 viplasvegasparty.com
@@ -182365,6 +182369,7 @@ zinfighkildo.ftpserver.biz
 zingar.com
 zingermail.co
 zingibzfrr.space
+zingmail.shop
 zingsingingfitness.com
 zinmail.cf
 zinmail.ga

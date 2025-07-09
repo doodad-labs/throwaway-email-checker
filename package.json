@@ -7,6 +7,7 @@
     "test": "jest",
     "fetch-tlds": "tsx scripts/fetch-tlds.ts",
     "fetch-domains": "tsx scripts/fetch-domains.ts",
+    "scrape-domains": "tsx scrapers/index.ts",
     "build": "tsup src --minify --dts --platform=node --legacy-output --treeshake"
   },
   "repository": {
