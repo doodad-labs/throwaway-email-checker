@@ -15,7 +15,7 @@ const WAIT_TIMEOUT = {
 };
 
 export default async function scrapeTempMailDomains() {
-    console.log('Starting parallel scraping for tempmail.so...');
+    console.log('Starting parallel scraping for smailpro.com...');
     const domains = new Set<string>();
 
     // Process all browsers in parallel

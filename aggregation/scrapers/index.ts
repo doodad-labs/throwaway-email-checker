@@ -1,3 +1,4 @@
+import disposablemail_com from './disposablemail-com';
 import mailtemp_uk from './mailtemp-uk';
 import smailpro_com from './smailpro-com';
 import tmp_mail_io from './temp-mail-io';
@@ -7,6 +8,10 @@ import tmpmailo_com from './tempmailo-com';
 
 
 (async ()=>{
+
+    await disposablemail_com().catch(error => {
+        console.error('\x1b[31mError in disposablemail_com scraper:', error, '\x1b[0m');
+    });
     
     await mailtemp_uk().catch(error => {
         console.error('\x1b[31mError in mailtemp_uk scraper:', error, '\x1b[0m');
