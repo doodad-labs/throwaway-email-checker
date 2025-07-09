@@ -25,7 +25,7 @@ export default async function main() {
         const context = await browser.newContext();
         const page = await context.newPage();
         await page.goto(url);
-        await page.waitForTimeout(500);
+        await page.waitForTimeout(1000);
 
         const changeEmailButton = await page.$('button[data-original-title="Change email"]');
         if (changeEmailButton) {
@@ -74,6 +74,7 @@ export default async function main() {
     }
 
     console.log(`Found ${[...domains].length} valid domains from temp-mail.io.`);
+    console.log(`Domains: ${[...domains].join(', ')}`);
     addToDisposableList([...domains])
 }
 
