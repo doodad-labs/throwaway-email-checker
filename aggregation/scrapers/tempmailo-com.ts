@@ -27,13 +27,11 @@ export default async function main() {
         const consentButton = await page.$('div.fc-consent-root button[aria-label="Consent"]');
         if (!consentButton) {
             console.error(`Consent button not found on ${browserType}`);
-            await browser.close();
-            continue;
+        } else {
+            console.log(`Clicking consent button on ${browserType}`);
+            await consentButton.click();
+            await page.waitForTimeout(500);
         }
-
-        console.log(`Clicking consent button on ${browserType}`);
-        await consentButton.click();
-        await page.waitForTimeout(500);
 
         const changeEmailButton = await page.$('div.primaryCommands div.prim-btn-wrap:last-child button.prim-btn');
         if (!changeEmailButton) {
@@ -123,7 +121,7 @@ export default async function main() {
 
     console.log(`Found ${[...domains].length} valid domains from tempmailo.com.`);
     console.log(`Domains: ${[...domains].join(', ')}`);
-    //addToDisposableList([...domains])
+    addToDisposableList([...domains])
 }
 
 if (require.main === module) {
