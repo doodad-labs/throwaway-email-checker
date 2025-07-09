@@ -58,7 +58,7 @@ All benchmarks were measured over 10 million runs (averaged), executing each pac
 
 | Package | Avg. Time (per validation) | Validation Logic |
 |---------|----------------------------|------------------|
-| **[throwaway](https://github.com/doodad-labs/throwaway-email-checker)** | **155.73 ns** | • Local part validation<br>• Domain validation<br>• RFC compliance checks<br>• TLD validation<br>• ICANN verification<br>• 70,000+ domain blacklist check |
+| **[throwaway](https://github.com/doodad-labs/throwaway-email-checker)** | **155.73 ns** | • Local part validation<br>• Domain validation<br>• RFC compliance checks<br>• TLD validation<br>• ICANN verification<br>• 180,000+ domain blacklist check |
 | [email-validator](https://npmjs.com/email-validator) | 180.47 ns | • Regex pattern matching<br>• Length verification |
 | [@shelf/is-valid-email-address](https://npmjs.com/@shelf/is-valid-email-address) | 404.70 ns | • Local part regex<br>• Domain regex<br>• Quoted string check |
 
