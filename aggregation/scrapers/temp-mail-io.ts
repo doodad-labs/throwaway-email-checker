@@ -1,6 +1,7 @@
 import playwright from 'playwright';
 import validateDomain from '../utils/validate-domain';
 import { addToDisposableList } from '../utils/add-to-list';
+import 'dotenv/config'
 
 const url = "https://temp-mail.io/";
 
@@ -14,7 +15,13 @@ export default async function main() {
 
         console.log(`Launching browser: ${browserType}`);
 
-        const browser = await playwright[browserType].launch();
+        const browser = await playwright[browserType].launch({
+            proxy: {
+                server: process.env.PROXY_SERVER,
+                username: process.env.PROXY_USER,
+                password: process.env.PROXY_PASS
+            }
+        });
         const context = await browser.newContext();
         const page = await context.newPage();
         await page.goto(url);

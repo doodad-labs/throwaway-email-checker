@@ -2,6 +2,7 @@ import playwright from 'playwright';
 import validateDomain from '../utils/validate-domain';
 import { addToDisposableList } from '../utils/add-to-list';
 import extractDomain from '../utils/extract-domain';
+import 'dotenv/config'
 
 const url = "https://tempmailo.com/";
 const changes: number = 30; // Number of times to change the email
@@ -16,7 +17,13 @@ export default async function main() {
 
         console.log(`Launching browser: ${browserType}`);
 
-        const browser = await playwright[browserType].launch();
+        const browser = await playwright[browserType].launch({
+            proxy: {
+                server: process.env.PROXY_SERVER,
+                username: process.env.PROXY_USER,
+                password: process.env.PROXY_PASS
+            }
+        });
         const context = await browser.newContext();
         const page = await context.newPage();
         await page.goto(url);

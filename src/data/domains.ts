@@ -7,7 +7,7 @@
 // - https://deviceandbrowserinfo.com/api/emails/disposable
 // - https://raw.githubusercontent.com/Propaganistas/Laravel-Disposable-Email/refs/heads/master/domains.json
 // - https://raw.githubusercontent.com/infiniteloopltd/TempEmailDomainMXRecords/refs/heads/master/TempEmailDomainMXRecords.csv
-// Last updated: 2025-07-09T13:50:33.613Z
+// Last updated: 2025-07-09T14:08:06.463Z
 
 /**
  * Array of disposable email domains.

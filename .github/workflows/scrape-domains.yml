@@ -30,6 +30,14 @@ jobs:
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
+        
+      - name: Create .env file
+        run: |
+          cat <<EOF > .env
+          PROXY_SERVER=${{ secrets.PROXY_SERVER }}
+          PROXY_USER=${{ secrets.PROXY_USER }}
+          PROXY_PASS=${{ secrets.PROXY_PASS }}
+          EOF
 
       - name: Scrape Temporary Email Domains
         env:
