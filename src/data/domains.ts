@@ -7,7 +7,7 @@
 // - https://raw.githubusercontent.com/wesbos/burner-email-providers/refs/heads/master/emails.txt
 // - https://deviceandbrowserinfo.com/api/emails/disposable
 // - https://raw.githubusercontent.com/Propaganistas/Laravel-Disposable-Email/refs/heads/master/domains.json
-// Last updated: 2025-07-09T11:40:39.594Z
+// Last updated: 2025-07-09T11:42:42.689Z
 
 /**
  * Array of disposable email domains.
@@ -30941,6 +30941,7 @@ export const domainArray: string[] = [
 	"bossmanjack.lol",
 	"bossmanjack.net",
 	"bossmanjack.shop",
+	"bossmanjack.xyz",
 	"bosterpremium.com",
 	"boston-towing-service.info",
 	"bostoncocainerehab.com",
@@ -33178,6 +33179,7 @@ export const domainArray: string[] = [
 	"buyordie.info",
 	"buyovz.com",
 	"buypill-rx.info",
+	"buypq.anonbox.net",
 	"buypresentation.com",
 	"buyprice.co",
 	"buyprosemedicine.com",
@@ -108689,6 +108691,7 @@ export const domainArray: string[] = [
 	"moviefilms.su",
 	"moviefreedo.com",
 	"movieindoxxi.online",
+	"movieisme.co",
 	"movieisme.com",
 	"moviekuupdate.xyz",
 	"movienox.com",
@@ -168280,6 +168283,7 @@ export const domainArray: string[] = [
 	"vipilitka.buzz",
 	"vipiskaegryult.xyz",
 	"vipitv.com",
+	"vipivip.vip",
 	"vipizka-iz-egrp.ru",
 	"vipjis.top",
 	"viplasvegasparty.com",
@@ -182371,6 +182375,7 @@ export const domainArray: string[] = [
 	"zingar.com",
 	"zingermail.co",
 	"zingibzfrr.space",
+	"zingmail.shop",
 	"zingsingingfitness.com",
 	"zinmail.cf",
 	"zinmail.ga",
