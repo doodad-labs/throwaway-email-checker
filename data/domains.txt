@@ -7,7 +7,7 @@
 # - https://deviceandbrowserinfo.com/api/emails/disposable
 # - https://raw.githubusercontent.com/Propaganistas/Laravel-Disposable-Email/refs/heads/master/domains.json
 # - https://raw.githubusercontent.com/infiniteloopltd/TempEmailDomainMXRecords/refs/heads/master/TempEmailDomainMXRecords.csv
-# Last updated: 2025-07-09T14:10:46.714Z
+# Last updated: 2025-07-09T14:21:19.774Z
 
 0-00.usa.cc
 0-30-24.com
