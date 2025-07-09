@@ -6,10 +6,21 @@ import tmpmailo_com from './tempmailo-com';
 
 (async ()=>{
     
-    await mailtemp_uk();
-    await tmp_mail_io();
-    await tempmail_so();
-    await tmpmailo_com();
+    await mailtemp_uk().catch(error => {
+        console.error('\x1b[31mError in mailtemp_uk scraper:', error, '\x1b[0m');
+    });
+
+    await tmp_mail_io().catch(error => {
+        console.error('\x1b[31mError in tmp_mail_io scraper:', error, '\x1b[0m');
+    });
+
+    await tempmail_so().catch(error => {
+        console.error('\x1b[31mError in tempmail_so scraper:', error, '\x1b[0m');
+    });
+
+    await tmpmailo_com().catch(error => {
+        console.error('\x1b[31mError in tmpmailo_com scraper:', error, '\x1b[0m');
+    });
     
     console.log('All scrapers completed successfully.');
 
