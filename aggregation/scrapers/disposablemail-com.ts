@@ -6,7 +6,7 @@ import processDomainsResults from './utils/process';
 import launchBrowserWithProxy, { BROWSERS, navigateToPage } from './utils/launch';
 
 const URL = "https://disposablemail.com/";
-const CHANGES = 15; // Number of times to change the email
+const CHANGES = 5; // Number of times to change the email
 
 export default async function scrapeTempMailDomains() {
     console.log('Starting parallel scraping for disposablemail.com...');
