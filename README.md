@@ -140,4 +140,5 @@ Found an issue? Open a ticket or submit a fix!
 
 ### Posts
 
-- [A Faster Approach to Email Validation: Why We Ditched Regex ](https://dev.to/notreeceharris/a-faster-approach-to-email-validation-why-we-ditched-regex-14al)
+- [A Faster Approach to Email Validation: Why We Ditched Regex](https://dev.to/notreeceharris/a-faster-approach-to-email-validation-why-we-ditched-regex-14al)
+- [The World's Largest Disposable Email Domain List – How We Keep It Updated](https://dev.to/notreeceharris/the-worlds-largest-disposable-email-domain-list-how-we-keep-it-updated-pd7)
