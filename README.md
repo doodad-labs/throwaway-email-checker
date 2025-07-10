@@ -12,7 +12,7 @@
 A high-performance email validation library featuring real-time disposable email detection. Our database is continuously updated through automated aggregation of disposable domains from trusted community sources.
 
 <!-- disposable database size: the number between the backticks on the next line will be automatically updated -->
-Currently **`183,515`** known disposable domains detected, this updates regularly.
+Currently **`205,751`** known disposable domains detected, this updates regularly.
 
 *This project automatically maintains its disposable email domain list through workflows and scraping, but relies on open-source contributions to keep scrapers and filters up-to-date—[learn how to help](#contributions).*
 
