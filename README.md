@@ -1,3 +1,6 @@
+> [!WARNING]  
+> This package is currently in its early stages, and some domains may be flagged incorrectly. **We urgently need contributors** to help improve the allow list.
+
 # Throwaway - The Fastest Email Validator & Disposable Email Checker
 
 [简体中文版](translations/README.zh-CN.md) | [traducción](translations/README.es-ES.md)
