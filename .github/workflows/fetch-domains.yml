@@ -1,12 +1,12 @@
 name: Domain Aggregation and Source Generation
-description: Aggregates domains from multiple sources and generates source files (runs weekly or on data/script changes)
+description: Aggregates domains from multiple sources and generates source files (runs daily or on data/script changes)
 
 permissions:
   contents: write
 
 on:
   schedule:
-    - cron: '0 3 * * 0' # Weekly at 03:00 UTC Sunday
+    - cron: '0 3 * * *' # Daily at 03:00 UTC
   workflow_dispatch: # Manual trigger option
   push:
     branches:
