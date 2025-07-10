@@ -135,3 +135,9 @@ Found an issue? Open a ticket or submit a fix!
 
 
 ![](https://contrib.nn.ci/api?repo=doodad-labs/throwaway-email-checker)
+
+---
+
+### Posts
+
+- [A Faster Approach to Email Validation: Why We Ditched Regex ](https://dev.to/notreeceharris/a-faster-approach-to-email-validation-why-we-ditched-regex-14al)
