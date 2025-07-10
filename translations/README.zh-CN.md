@@ -1,3 +1,6 @@
+> [!WARNING]  
+> 这个包目前处于早期阶段，某些域名可能会被错误标记。我们急需贡献者帮助完善许可名单（allow list）。
+
 # Throwaway - 最快的邮箱验证器 & 临时邮箱检测工具
 
 [Translation](../README.md) | [traducción](./README.es-ES.md)
