@@ -12,7 +12,7 @@ on:
     branches:
       - main
     paths:
-      - 'scripts/aggregate-domains.ts'
+      - 'aggregation/fetch/aggregate-domains.ts'
 
 jobs:
   aggregate-domains:
