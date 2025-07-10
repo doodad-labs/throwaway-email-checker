@@ -1,6 +1,6 @@
 # Throwaway - 最快的邮箱验证器 & 临时邮箱检测工具
 
-[Translation](../README.md)
+[Translation](../README.md) | [traducción](./README.es-ES.md)
 
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/doodad-labs/throwaway-email-checker/scrape-domains.yml?style=flat-square&label=域名抓取)
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/doodad-labs/throwaway-email-checker/fetch-domains.yml?style=flat-square&label=域名获取)

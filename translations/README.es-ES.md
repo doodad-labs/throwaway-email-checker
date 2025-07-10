@@ -1,6 +1,6 @@
 # Throwaway - El Validador de Emails Más Rápido y Detector de Correos Desechables
 
-[简体中文版](translations/README.zh-CN.md) | [Translation](../README.md)
+[简体中文版](./README.zh-CN.md) | [Translation](../README.md)
 
 ![Estado de GitHub Actions](https://img.shields.io/github/actions/workflow/status/doodad-labs/throwaway-email-checker/scrape-domains.yml?style=flat-square&label=Extracción%20de%20Dominios)
 ![Estado de GitHub Actions](https://img.shields.io/github/actions/workflow/status/doodad-labs/throwaway-email-checker/fetch-domains.yml?style=flat-square&label=Obtención%20de%20Dominios)
