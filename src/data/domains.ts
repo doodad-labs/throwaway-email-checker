@@ -7,7 +7,7 @@
 // - https://deviceandbrowserinfo.com/api/emails/disposable
 // - https://raw.githubusercontent.com/Propaganistas/Laravel-Disposable-Email/refs/heads/master/domains.json
 // - https://raw.githubusercontent.com/infiniteloopltd/TempEmailDomainMXRecords/refs/heads/master/TempEmailDomainMXRecords.csv
-// Last updated: 2025-07-10T02:55:28.493Z
+// Last updated: 2025-07-10T15:06:06.198Z
 
 /**
  * Array of disposable email domains.
@@ -9393,6 +9393,7 @@ export const domainArray: string[] = [
 	"7mc1l1i.cse445.com",
 	"7mca.stellas.store",
 	"7med24.co.uk",
+	"7mn6v.anonbox.net",
 	"7mqshw7.cse445.com",
 	"7msof.anonbox.net",
 	"7mtff.us",
@@ -51664,6 +51665,7 @@ export const domainArray: string[] = [
 	"ds.teml.net",
 	"ds24.media",
 	"ds4cz.anonbox.net",
+	"ds4kojima.com",
 	"ds8vmg-mail.xyz",
 	"dsa32442342.pro",
 	"dsaca.com",
@@ -88589,6 +88591,7 @@ export const domainArray: string[] = [
 	"kantclass.com",
 	"kanum-thai-park-west.com",
 	"kanus.io",
+	"kanva.site",
 	"kanzanishop.com",
 	"kanzhubo.xyz",
 	"kanzlider64.ru",
@@ -153370,6 +153373,7 @@ export const domainArray: string[] = [
 	"taktikvip.xyz",
 	"taku.aleeas.com",
 	"takuino.app",
+	"takumipay.xyz",
 	"talahicc.com",
 	"talamail.ir",
 	"talamovieoo.xyz",
@@ -168046,6 +168050,7 @@ export const domainArray: string[] = [
 	"villemolaque.info",
 	"villenoenvironmental.com",
 	"villousproducts.com",
+	"vilmax.xyz",
 	"vilnapresa.com",
 	"vilnuska.site",
 	"vilrata.cf",

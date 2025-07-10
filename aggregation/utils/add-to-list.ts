@@ -11,37 +11,54 @@ let disposables: Set<string> = new Set<string>();
 let current_list_size = 0; // Variable to track the current size of the disposable email list
 
 function updateReadme(domains: string[]) {
-    const readmePath = './README.md';
-    if (!fs.existsSync(readmePath)) {
-        console.error(`README.md not found at ${readmePath}`);
-        return;
-    }
 
-    let readmeContent = fs.readFileSync(readmePath, 'utf-8');
-    const lines = readmeContent.split('\n');
-    const disposableCount = domains.length;
+    const readmeFiles = [
+        './README.md',
+    ]
 
-    // Update the disposable email database size in the README
-    const marker = '<!-- disposable database size: the number between the backticks on the next line will be automatically updated -->';
-    const markerIndex = lines.findIndex(line => line.includes(marker));
-    if (markerIndex !== -1) {
-        // simply replace the number between the backticks
-        const regex = /`(\d+)`|`([\d,]+)`/g;
-
-        if (lines[markerIndex + 1].match(regex)) {
-            lines[markerIndex + 1] = lines[markerIndex + 1].replace(regex, `\`${disposableCount.toLocaleString()}\``);
+    // get all readme files in translation directories (any .md files in ./translations)
+    const translationsDir = './translations';
+    if (fs.existsSync(translationsDir)) {
+        const translationFiles = fs.readdirSync(translationsDir).filter(file => file.endsWith('.md'));
+        for (const file of translationFiles) {
+            readmeFiles.push(`${translationsDir}/${file}`);
         }
     }
 
-    // Write the updated content back to the README file
-    
-    try {
-        fs.writeFileSync(readmePath, lines.join('\n'), 'utf-8');
-        console.log(`README.md updated with disposable email database size: ${disposableCount}`);
-    } catch (error) {
-        console.error(`Failed to update README.md:`, error);
-        return;
+    // Update each README file with the new size
+    for (const readmePath of readmeFiles) {
+        if (!fs.existsSync(readmePath)) {
+            console.error(`${readmePath} not found at ${readmePath}`);
+            return;
+        }
+
+        let readmeContent = fs.readFileSync(readmePath, 'utf-8');
+        const lines = readmeContent.split('\n');
+        const disposableCount = domains.length;
+
+        // Update the disposable email database size in the README
+        const marker = '<!-- disposable database size: the number between the backticks on the next line will be automatically updated -->';
+        const markerIndex = lines.findIndex(line => line.includes(marker));
+        if (markerIndex !== -1) {
+            // simply replace the number between the backticks
+            const regex = /`(\d+)`|`([\d,]+)`/g;
+
+            if (lines[markerIndex + 1].match(regex)) {
+                lines[markerIndex + 1] = lines[markerIndex + 1].replace(regex, `\`${disposableCount.toLocaleString()}\``);
+            }
+        }
+
+        // Write the updated content back to the README file
+        
+        try {
+            fs.writeFileSync(readmePath, lines.join('\n'), 'utf-8');
+            console.log(`${readmePath} updated with disposable email database size: ${disposableCount}`);
+        } catch (error) {
+            console.error(`Failed to update ${readmePath}:`, error);
+            return;
+        }
     }
+    
 }
 
 export async function addToAllowlist(domains: string[]) {
