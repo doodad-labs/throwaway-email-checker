@@ -1,3 +1,6 @@
+> [!WARNING]  
+> Este paquete se encuentra actualmente en sus primeras etapas y algunos dominios pueden ser marcados incorrectamente. **Necesitamos urgentemente colaboradores** para ayudar a mejorar la lista de permitidos.
+
 # Throwaway - El Validador de Emails Más Rápido y Detector de Correos Desechables
 
 [简体中文版](./README.zh-CN.md) | [Translation](../README.md)
