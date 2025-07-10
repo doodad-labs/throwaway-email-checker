@@ -1,5 +1,7 @@
 # Throwaway - The Fastest Email Validator & Disposable Email Checker
 
+[简体中文版](translations/README.zh-CN.m)
+
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/doodad-labs/throwaway-email-checker/scrape-domains.yml?style=flat-square&label=Domain%20Scraping)
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/doodad-labs/throwaway-email-checker/fetch-domains.yml?style=flat-square&label=Domain%20Fetch)
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/doodad-labs/throwaway-email-checker/fetch-tlds.yml?style=flat-square&label=TLDs%20Fetch)
