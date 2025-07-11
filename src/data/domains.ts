@@ -9,7 +9,7 @@
 // - https://deviceandbrowserinfo.com/api/emails/disposable
 // - https://raw.githubusercontent.com/Propaganistas/Laravel-Disposable-Email/refs/heads/master/domains.json
 // - https://raw.githubusercontent.com/infiniteloopltd/TempEmailDomainMXRecords/refs/heads/master/TempEmailDomainMXRecords.csv
-// Last updated: 2025-07-11T03:00:02.932Z
+// Last updated: 2025-07-11T03:58:31.222Z
 
 /**
  * Array of disposable email domains.
@@ -12973,6 +12973,7 @@ export const domainArray: string[] = [
 	"aargau.emailind.com",
 	"aargonar.emailind.com",
 	"aarkolt.com",
+	"aarmail.my.id",
 	"aaron-culligan.com",
 	"aaron124.store",
 	"aaron243.store",
@@ -33209,6 +33210,7 @@ export const domainArray: string[] = [
 	"bn.10mail.org",
 	"bn.10mail.xyz",
 	"bn.laste.ml",
+	"bn254.anonbox.net",
 	"bn373.top",
 	"bn4mc.anonbox.net",
 	"bn5me.anonbox.net",
@@ -52057,6 +52059,7 @@ export const domainArray: string[] = [
 	"dedemit1.igg.biz",
 	"dedemit2.igg.biz",
 	"dedemittt.igg.biz",
+	"dedesignessentials.com",
 	"dedetox.center",
 	"dedeurassen.online",
 	"dedi.blatnet.com",
@@ -67945,6 +67948,7 @@ export const domainArray: string[] = [
 	"feedback.gambolhq.click",
 	"feedback.getcaper.click",
 	"feedback.hikeapp.click",
+	"feedback.lapsuscalami.click",
 	"feedback.opencaper.click",
 	"feedback.religiousfestival.click",
 	"feedback.traintrips.click",
@@ -68155,6 +68159,7 @@ export const domainArray: string[] = [
 	"fenkpeln.online",
 	"fenkpeln.site",
 	"fenkpeln.xyz",
+	"fennel.team",
 	"fenomen.net",
 	"fenonna17490.mebelnovation.ru",
 	"fensberg.com",
@@ -75210,6 +75215,7 @@ export const domainArray: string[] = [
 	"general.hammerhandz.com",
 	"general.jinmydarling.com",
 	"general.lakemneadows.com",
+	"general.lapsuscalami.click",
 	"general.nauticavoyage.click",
 	"general.oldoutnewin.com",
 	"general.ploooop.com",
@@ -108789,6 +108795,7 @@ export const domainArray: string[] = [
 	"liyaxiu.com",
 	"liybt.live",
 	"liza.freeml.net",
+	"lizadjp.news",
 	"lizagourds.com",
 	"lizalisel.com",
 	"lizardrich.com",
@@ -160585,6 +160592,7 @@ export const domainArray: string[] = [
 	"seofun.ru",
 	"seogawd.com",
 	"seogern.ru",
+	"seohesapmarket.com",
 	"seohoan.com",
 	"seoimpressions.com",
 	"seoindexbuddy.com",
@@ -161408,6 +161416,7 @@ export const domainArray: string[] = [
 	"sfzcc.com",
 	"sfzh6p.info",
 	"sfznix.club",
+	"sg-cherrypiefarmhouse.com",
 	"sg.emlhub.com",
 	"sg.freeml.net",
 	"sg.luk2.com",
@@ -204380,6 +204389,7 @@ export const domainArray: string[] = [
 	"zhibozhiyuan.xyz",
 	"zhidkiy-gazon.ru",
 	"zhiezpremium.biz.id",
+	"zhiezpremium.store",
 	"zhilecai.xyz",
 	"zhimail.in",
 	"zhimail.xyz",
